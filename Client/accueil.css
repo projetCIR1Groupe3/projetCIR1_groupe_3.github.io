@@ -1,0 +1,116 @@
+html, body, main, ul{
+    margin : 0px;
+    min-height: 100%;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a{
+    all:unset;
+}
+
+header{
+    background-color: #D81F26;
+    height: 70px;
+}
+
+header ul{
+    list-style : none;
+    display : flex;
+    justify-content : flex-start;
+    gap : 15px;
+}
+
+header ul li{
+    padding: 20px 10px 15px 10px;
+    color : white;
+    font-size : 18px;
+}
+
+#layout{
+    background-color: #2A2A2A;
+}
+
+footer{
+    background-color:#D81F26;
+    position: sticky;
+    top:100%;
+    width: 100%;
+    height: 70px;
+    color: white;
+    display:grid;
+    grid-template-rows:70px;
+    grid-template-columns:40% 20% 20% 20%;
+}
+
+footer p{
+    margin-left: 10px;
+}
+
+#developpeur{
+    margin-top: 10px;
+    display: flex;
+    position: relative;
+}
+
+#developpeur i:hover{
+    cursor: pointer;
+}
+
+#layout{
+    min-height: 100vh;
+}
+
+#recherche_1,#recherche_2,#recherche_3,#recherche_4{
+    color: white;
+    background-color: #2A2A2A;
+    width: 25%;
+    height: 6vh;
+    border-radius: 7px;
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+#down{
+    margin-top: 1%;
+}
+
+#up{
+    margin-top: 7%;
+}
+
+#recherche_1 p,#recherche_2 p,#recherche_3 p,#recherche_4 p{
+    text-align: center;
+}
+
+#netflux{
+    margin-top: 7%;
+    width: 70%;
+    height: 70%;
+}
+
+#logoISEN{
+    margin-left: 15%;
+    margin-top: 3%;
+    width: 80%;
+    height: 80%;
+}
+
+#verticalHR{
+    margin-top: 0.35%;
+    height: 9vh;
+    width: 0.5%;
+    background-color: #2A2A2A;
+    border-radius: 5px;
+}
+
+#recherche_1,#recherche_2,#recherche_3,#recherche_4,#netflux{
+    cursor: pointer;
+}
+
+#netflux:hover{
+    transform : scale(1.1);
+    transition: 0.5s;
+}

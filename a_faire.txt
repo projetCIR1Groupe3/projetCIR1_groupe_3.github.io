@@ -1,21 +1,21 @@
+– Valider tous les formulaires avec JS.
+– Envoyer une requête pour terminer le Serveur.
+
 – Chercher films par réalisateur.  
 – Chercher films par durée.  
 – Chercher le réalisateur qui a fait le plus grand nombre de films et connaître ce nombre.  
-– Valider tous les formulaires avec JS.  
 – Visualiser les résultats des requêtes avec leur temps d’exécution.  
-– Envoyer une requête pour terminer le Serveur.
-– Séparation de fichiers de code source (main.c pour le programme principal puis plusieurs .c .h selon besoin).
-– Pouvoir mesurer le temps d’exécution de requêtes (compter seulement le temps d’exécution de la fonction qui calcule le résultat sans tenir en compte la lecture/écriture de fichiers, etc).  
-– Obtenir tous les films d’un réalisateur doit se faire en O(m) où m est le nombre de caractères du nom du réalisateur.  
-– Obtenir le réalisateur qui a fait le plus grand nombre de films doit se faire en O(1). Obtenir ce nombre de films doit être O(1) aussi.
-– Obtenir tous les films d’une durée donnée doit être O(1).  
+
 – Supprimer toute la filmothèque.  
 
 A la fin :
 
 – Visualiser tout le contenu de la filmothèque (page accueil de base)
-– Visualiser les résultats triés alphabétiquement (réalisateurs et films).
 – Pagination des résultats (par exemple 20 par page)
+
+
+
+– Visualiser les résultats triés alphabétiquement (réalisateurs et films).
 – Insérer un nouveau film. 
 – Chercher films par catégorie.
-– Chercher un film par son nom.  
+– Chercher un film par son nom.     

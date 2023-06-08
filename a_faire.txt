@@ -17,5 +17,5 @@ A la fin :
 – Visualiser les résultats triés alphabétiquement (réalisateurs et films).
 – Pagination des résultats (par exemple 20 par page)
 – Insérer un nouveau film. 
-– Chercher films par catégorie.  
+– Chercher films par catégorie.
 – Chercher un film par son nom.  

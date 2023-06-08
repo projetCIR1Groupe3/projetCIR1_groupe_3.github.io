@@ -63,7 +63,7 @@ body{
     min-height: 100vh;
 }
 
-#recherche{
+#recherche_1,#recherche_2,#recherche_3,#recherche_4{
     color: white;
     background-color: #2A2A2A;
     width: 25%;
@@ -81,7 +81,7 @@ body{
     margin-top: 7%;
 }
 
-#recherche p{
+#recherche_1 p,#recherche_2 p,#recherche_3 p,#recherche_4 p{
     text-align: center;
 }
 
@@ -104,4 +104,13 @@ body{
     width: 0.5%;
     background-color: #2A2A2A;
     border-radius: 5px;
+}
+
+#recherche_1,#recherche_2,#recherche_3,#recherche_4,#netflux{
+    cursor: pointer;
+}
+
+#netflux:hover{
+    transform : scale(1.1);
+    transition: 0.5s;
 }

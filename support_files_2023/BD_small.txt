@@ -1,0 +1,100 @@
+Allen;Annie Hall;93;Romance
+Allen;Midnight in Paris;94;Comedy
+Anderson;The Grand Budapest Hotel;100;Comedy
+Anderson;There Will Be Blood;158;Drama
+Aronofsky;Black Swan;108;Drama
+Bigelow;Point Break;120;Action
+Boyle;127 Hours;94;Biography
+Boyle;Slumdog Millionaire;120;Drama
+Boyle;Trainspotting;94;Drama
+Brooks;The Producers;88;Comedy
+Burton;Edward Scissorhands;105;Fantasy
+Cameron;Avatar;162;Fantasy
+Chazelle;La La Land;128;Musical
+Chazelle;Whiplash;107;Drama
+Coen;Fargo;98;Thriller
+Coen;Inside Llewyn Davis;105;Drama
+Coen;No Country for Old Men;122;Thriller
+Coen;The Big Lebowski;117;Comedy
+Coogler;Black Panther;135;Superhero
+Coogler;Creed;133;Sports
+Coppola;Apocalypse Now;153;War
+Coppola;The Godfather;175;Crime
+Cuaron;Harry Potter and the Prisoner of Azkaban;142;Fantasy
+Cuarón;Children of Men;109;Science Fiction
+Del Toro;Pan's Labyrinth;118;Fantasy
+Del Toro;The Shape of Water;123;Fantasy
+Demme;The Silence of the Lambs;118;Thriller
+DuVernay;Selma;128;Biography
+Eastwood;Unforgiven;131;Western
+Farhadi;A Separation;123;Drama
+Fincher;Fight Club;139;Drama
+Fincher;Mank;131;Drama
+Fincher;Seven;127;Thriller
+Fincher;The Social Network;120;Drama
+Gerwig;Little Women;135;Drama
+Haynes;Carol;118;Romance
+Howard;Rush;123;Biography
+Jackson;King Kong;187;Adventure
+Jackson;The Lord of the Rings: The Fellowship of the Ring;178;Fantasy
+Jenkins;If Beale Street Could Talk;119;Romance
+Jenkins;Moonlight;111;Drama
+Johnson;Brick;110;Mystery
+Johnson;Knives Out;130;Mystery
+Johnson;Star Wars: The Last Jedi;152;Science Fiction
+Jonze;Her;126;Romance
+Joon-ho;Parasite;132;Thriller
+Kaufman;Eternal Sunshine of the Spotless Mind;108;Romance
+Koreeda;Shoplifters;121;Drama
+Kubrick;2001: A Space Odyssey;149;Science Fiction
+Kubrick;Full Metal Jacket;116;War
+Kurosawa;Seven Samurai;207;Action
+Lanthimos;The Lobster;119;Comedy
+Lee;BlacKkKlansman;135;Drama
+Lee;Brokeback Mountain;134;Romance
+Lee;Do the Right Thing;120;Drama
+Lee;Malcolm X;202;Biography
+Lee;The Old Guard;125;Action
+Leone;The Good, the Bad and the Ugly;178;Western
+Lonergan;Manchester by the Sea;137;Drama
+Mackenzie;Hell or High Water;102;Crime
+McKay;Step Brothers;98;Comedy
+McQueen;12 Years a Slave;134;Drama
+McQueen;Widows;129;Thriller
+McTiernan;Die Hard;131;Action
+Mendes;1917;119;War
+Mendes;American Beauty;122;Drama
+Mendes;Road to Perdition;117;Crime
+Mendes;Skyfall;143;Action
+Nolan;Dunkirk;106;War
+Nolan;Inception;148;Science Fiction
+Nolan;The Dark Knight;152;Action
+Payne;Nebraska;115;Drama
+Payne;Sideways;127;Comedy
+Payne;The Descendants;115;Drama
+Peckinpah;The Wild Bunch;145;Western
+Peele;Get Out;104;Horror
+Polanski;Chinatown;131;Mystery
+Refn;Drive;100;Crime
+Reiner;The Princess Bride;98;Romance
+Sciamma;Portrait of a Lady on Fire;119;Romance
+Scorsese;Goodfellas;146;Crime
+Scorsese;The Irishman;209;Crime
+Scott;Blade Runner;117;Science Fiction
+Shyamalan;The Sixth Sense;107;Thriller
+Sorkin;Molly's Game;140;Drama
+Sorkin;The Trial of the Chicago 7;129;Drama
+Spielberg;Jurassic Park;127;Action
+Spielberg;Schindler's List;195;Biography
+Tarantino;Django Unchained;165;Western
+Tarantino;Kill Bill: Vol. 1;111;Action
+Tarantino;Once Upon a Time in Hollywood;161;Comedy
+Tarantino;Pulp Fiction;154;Crime
+Villeneuve;Arrival;116;Science Fiction
+Villeneuve;Blade Runner 2049;163;Science Fiction
+Villeneuve;Prisoners;153;Thriller
+Villeneuve;Sicario;122;Thriller
+Waititi;Hunt for the Wilderpeople;101;Comedy
+Waititi;Jojo Rabbit;108;Comedy
+Waititi;Thor: Ragnarok;130;Superhero
+Wright;Baby Driver;112;Action

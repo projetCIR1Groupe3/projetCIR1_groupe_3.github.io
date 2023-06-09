@@ -13,20 +13,13 @@ a{
 
 header{
     background-color: #D81F26;
-    height: 70px;
+    height: 11vh;
 }
 
 header ul{
     list-style : none;
     display : flex;
     justify-content : flex-start;
-    gap : 15px;
-}
-
-header ul li{
-    padding: 20px 10px 15px 10px;
-    color : white;
-    font-size : 18px;
 }
 
 #layout{
@@ -38,25 +31,21 @@ footer{
     position: sticky;
     top:100%;
     width: 100%;
-    height: 70px;
+    height: 11vh;
     color: white;
     display:grid;
-    grid-template-rows:70px;
+    grid-template-rows:11vh;
     grid-template-columns:40% 20% 20% 20%;
 }
 
 footer p{
-    margin-left: 10px;
+    margin-left: 2%;
 }
 
 #developpeur{
-    margin-top: 10px;
+    margin-top: 4%;
     display: flex;
     position: relative;
-}
-
-#developpeur i:hover{
-    cursor: pointer;
 }
 
 #layout{
@@ -113,4 +102,21 @@ footer p{
 #netflux:hover{
     transform : scale(1.1);
     transition: 0.5s;
+}
+
+.searchbar{
+    display: block;
+    margin: 2% auto;
+    padding-left: 1%;
+
+    width: 40vw;
+    height: 6vh;
+    border-radius: 20px;
+    border: none;
+}
+
+.fa-solid{
+    position: relative;
+    bottom: 10vh;
+    left: 67.5vw;
 }

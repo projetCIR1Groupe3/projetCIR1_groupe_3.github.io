@@ -62,12 +62,9 @@ footer p{
     margin-left: 5%;
 }
 
-#down{
-    margin-top: 1%;
-}
-
 #up{
     margin-top: 7%;
+    font-size: 100%;
 }
 
 #recherche_1 p,#recherche_2 p,#recherche_3 p,#recherche_4 p{

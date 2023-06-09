@@ -1,6 +1,8 @@
 function main(){
-    let counter = 0
+    
 }
+
+let counter=0
 
 function resetSurbrillance(){
     document.getElementById("recherche_1").style.backgroundColor = "#2A2A2A"
@@ -8,9 +10,9 @@ function resetSurbrillance(){
 
     document.getElementById("recherche_2").style.backgroundColor = "#2A2A2A"
     document.getElementById("recherche_2").style.fontWeight = "normal"
-}
 
-counter = 0
+    counter = 0
+}
 
 function surbrillanceReal(){
     document.getElementById("recherche_2").style.backgroundColor = "#2A2A2A"

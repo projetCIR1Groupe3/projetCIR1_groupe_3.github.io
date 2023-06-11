@@ -1,72 +1,96 @@
 function main(){
-    
+    document.addEventListener("DOMContentLoaded", function(event) {
+        appendMovie();
+
+        const tableauBoutonRecherche = document.querySelectorAll(".recherche-boutton");        
+        
+        tableauBoutonRecherche.forEach(function(boutonRecherche){
+            boutonRecherche.addEventListener("click", function(event){
+                resetFilters();
+                event.currentTarget.classList.toggle("active");
+            });  
+        });
+    })
 }
 
-let counter=0
-let counter_Surbrillance=0
-let counter_Real=0
-
-function resetSurbrillance(){
-    document.getElementById("recherche_1").style.backgroundColor = "#2A2A2A"
-    document.getElementById("recherche_1").style.fontWeight = "normal"
-
-    document.getElementById("recherche_2").style.backgroundColor = "#2A2A2A"
-    document.getElementById("recherche_2").style.fontWeight = "normal"
-
-    counter = 0
-}
-
-function surbrillanceReal(){
-    if(counter_Surbrillance%2==0){
-        document.getElementById("recherche_1").style.backgroundColor = "#40393D"
-        document.getElementById("recherche_1").style.fontWeight = "bold"
-
-        document.getElementById("recherche_2").style.backgroundColor = "#2A2A2A"
-        document.getElementById("recherche_2").style.fontWeight = "normal"
-        counter = 1
-    }
-    else{
-        document.getElementById("recherche_1").style.backgroundColor = "#2A2A2A"
-        document.getElementById("recherche_1").style.fontWeight = "normal"
-
-        document.getElementById("recherche_2").style.backgroundColor = "#2A2A2A"
-        document.getElementById("recherche_2").style.fontWeight = "normal"
-        counter=0
-    }
-    counter_Surbrillance+=1
-}
-
-function surbrillanceDuree(){
-    if(counter_Real%2==0){
-        document.getElementById("recherche_1").style.backgroundColor = "#2A2A2A"
-        document.getElementById("recherche_1").style.fontWeight = "normal"
-
-        document.getElementById("recherche_2").style.backgroundColor = "#40393D"
-        document.getElementById("recherche_2").style.fontWeight = "bold"
-        counter = 2
-    }
-    else{
-        document.getElementById("recherche_1").style.backgroundColor = "#2A2A2A"
-        document.getElementById("recherche_1").style.fontWeight = "normal"
-
-        document.getElementById("recherche_2").style.backgroundColor = "#2A2A2A"
-        document.getElementById("recherche_2").style.fontWeight = "normal"
-        counter=0
-    }
-
-    counter_Real+=1
+function resetFilters() {
+    document.querySelectorAll(".recherche-boutton.active").forEach(function(b){
+        b.classList.remove("active");
+    });
 }
 
 function search(){
-    if(counter==0){
-        console.log("pas de filtre")
-    }
-    else if(counter==1){
-        console.log("réalisateur")
-    }
-    else if(counter==2){
-        console.log("durée")
-    }
+    const filters = []
+    const filterReal = document.querySelector("#recherche_real.active");
+    const filterDuree = document.querySelector("#recherche_duree.active");
+
+    if(filterReal) filters.push("realisateur");
+    if(filterDuree) filters.push("duree");
+
+    console.log(filters)
 }
 
-main;
+function readFileByName(fileName){
+
+    let xhr = new XMLHttpRequest();
+
+    try {                                                   // Remettre version du prof (enlever try, catch) lorsque le C aura été adapté
+        xhr.open("GET", fileName, false);
+        xhr.send(null);
+    } catch (error) {
+        console.log(error)
+    }
+
+    return xhr.responseText;
+}
+
+function readFile(){
+    return readFileByName("/support_files_2023/BD_small.txt");
+}
+
+function csvToArray(data) {
+    const lines = data.split('\n');
+    const keys = ['realisateur', 'titre', 'duree', 'genre'];
+  
+    return lines.map(line => {
+      const values = line.split(';');
+      return values.reduce((obj, value, index) => {
+        obj[keys[index]] = value;
+        return obj;
+      }, {});
+    });
+  }
+
+  function appendMovie() {
+    const movies = csvToArray(readFile());
+
+    const gridMovie = document.querySelector(".grid");
+
+    movies.forEach(movie => {
+        const movieElement = document.createElement("div");
+        movieElement.classList.add("film");
+
+        const movieTitle = document.createElement("h4");
+        movieTitle.innerText = movie.titre;
+
+        const movieReal = document.createElement("p");
+        movieReal.innerText = movie.realisateur;
+
+        const movieDuree = document.createElement("p");
+        movieDuree.innerText = Math.floor(movie.duree/60) + "h" + movie.duree%60;
+
+        const movieGenre = document.createElement("p");
+        movieGenre.innerText = movie.genre;
+
+        movieElement.appendChild(movieTitle);
+        movieElement.appendChild(movieReal);
+        movieElement.appendChild(movieDuree);
+        movieElement.appendChild(movieGenre);
+
+        gridMovie.appendChild(movieElement);
+    });
+  }
+  
+
+
+main();

@@ -30,19 +30,23 @@ function search(){
     console.log(filters)
 }
 
-function readFileByName(fileName){
-
-    let xhr = new XMLHttpRequest();
-
-    try {                                                   // Remettre version du prof (enlever try, catch) lorsque le C aura été adapté
-        xhr.open("GET", fileName, false);
-        xhr.send(null);
-    } catch (error) {
-        console.log(error)
-    }
-
-    return xhr.responseText;
-}
+function readFileByName(fileName) {
+    return new Promise(function(resolve, reject) {
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", fileName);
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          resolve(xhr.responseText);
+        } else {
+          reject(new Error("Erreur lors du chargement du fichier."));
+        }
+      };
+      xhr.onerror = function() {
+        reject(new Error("Erreur réseau lors du chargement du fichier."));
+      };
+      xhr.send();
+    });
+  }
 
 function readFile(){
     return readFileByName("../../support_files_2023/BD_small.txt");

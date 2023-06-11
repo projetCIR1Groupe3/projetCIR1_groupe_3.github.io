@@ -45,7 +45,7 @@ function readFileByName(fileName){
 }
 
 function readFile(){
-    return readFileByName("/support_files_2023/BD_small.txt");
+    return readFileByName("../../support_files_2023/BD_small.txt");
 }
 
 function csvToArray(data) {

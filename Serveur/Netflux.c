@@ -3,6 +3,9 @@
 #include <stdio.h>
 
 #include "netflux.h"
+#include "List.h"
+#include "nodeTrie.h"
+
 
 //Opération de création
 

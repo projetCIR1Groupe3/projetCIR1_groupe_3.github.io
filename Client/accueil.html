@@ -11,7 +11,7 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <script src="https://kit.fontawesome.com/6285461578.js" crossorigin="anonymous"></script>
-        
+
         <title> index </title>
 
         <link href="style/accueil.css" rel="stylesheet">
@@ -25,95 +25,99 @@
         
             <header id="header">
                 <nav class="navbar">
-                    <div class="nav-links">
-                        <ul>
-
-                            <a href="#" onclick="resetSurbrillance()">
-                                <img src="images/NETFLUX.png" alt="Image Not Found" id="netflux">
-                            </a>
-
-                            <div id="verticalHR">
-                                <p></p>
-                            </div>
-
-                            <div id="recherche_1" onclick="surbrillanceReal()">
+                        <div class="nav-logo-left" onclick="resetFilters()">
+                            <img src="images/NETFLUX.png" alt="Image Not Found" id="netflux">
+                        </div>
+                        <ul class="liste-nav">
+                            <div id="recherche_real" class="nav-boutton recherche-boutton">
                                 <p id="up">
                                     Recherche par réalisateur
                                 </p>
                             </div>
 
-                            <div id="recherche_2" onclick="surbrillanceDuree()">
+                            <div id="recherche_duree" class="nav-boutton recherche-boutton">
                                 <p id="up">
                                     Recherche par durée
                                 </p>
                             </div>
 
-                            <div id="recherche_3">
+
+                            <form id="biggest"><button id="real_n1" class="nav-boutton" onclick="writeFile('delete', 'BiggestReal')">
+
                                 <p id="up">
                                     Réalisateur n°1
                                 </p>
-                            </div>
+                            </button></form>
 
-                            <div id="recherche_4">
+                            <div id="recherche_todo" class="nav-boutton">
                                 <p id="up">
                                     A venir
                                 </p>
                             </div>
-
-                            <a href="#">
-                                <img src="images/logoISEN.png" alt="Image Not Found" id="logoISEN">
-                            </a>
-                            
                         </ul>
-                    </div>
+                        <div class="nav-logo-right">
+                            <img src="images/logoISEN.png" alt="Image Not Found" id="logoISEN">
+                        </div>
                 </nav>
             </header>
 
             <main>
                 
-                <div>
-                    <input class="searchbar" type="text" placeholder="Recherchez votre film" oninput="search()">
-                    <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-                </div>
+                <section class="section-recherche">
+                    <form id="div-recherche">
+                        <input class="searchbar" type="text" placeholder="Recherchez votre film" oninput="search()">
+                        <button id="request-Filter" onclick="requestFilter()"><i class="fa-solid fa-magnifying-glass fa-2x"></button></i></submit>
+                    </form>
+                </section>
+
+                <section class="section-film">
+                    <div class="grid">
+
+                    </div>
+                </section>
 
             </main>
 
-            <footer>
-                <p>
-                    33 Q Avenue du Champ de Manœuvre, 44470 Carquefou <br>
-                    <span id="phone_number">
-                        02 30 13 05 60
-                    <span>
-                </p>
 
-                <div id="developpeur">
-                    <div class="survol_linkedin">    
-                        <a href="https://www.instagram.com/nathan.gdbn/" target="_blank"><i class="icon_2 fa-brands fa-linkedin fa-3x"></i></a>
-                    </div>
-                    
-                    <p>GADBIN Nathan</p>
-                </div>
-        
-                <div id="developpeur">
-                    <div class="survol_linkedin">    
-                        <a href="https://www.instagram.com/romain.allano/" target="_blank"><i class="icon_2 fa-brands fa-linkedin fa-3x"></i></a>
-                    </div>
-                
-                    <p>Amaury PIGEAT</p>
-                </div>
-
-                <div id="developpeur">
-                    <div class="survol_linkedin">    
-                        <a href="https://www.instagram.com/nathan.gdbn/" target="_blank"><i class="icon_2 fa-brands fa-linkedin fa-3x"></i></a>
-                    </div>
-                    
-                    <p>Yanis RUFFLE</p>
-                </div>
-
-            </footer>
 
         </div>
+        <footer>
+            <p>
+                33 Q Avenue du Champ de Manœuvre, 44470 Carquefou <br>
+                <span id="phone_number">
+                    02 30 13 05 60
+                <span>
+            </p>
 
+            <div id="developpeur">
+                <div class="survol_linkedin">    
+                    <a href="https://www.instagram.com/nathan.gdbn/" target="_blank"><i class="icon_2 fa-brands fa-linkedin fa-3x"></i></a>
+                </div>
+                
+                <p>GADBIN Nathan</p>
+            </div>
+    
+            <div id="developpeur">
+                <div class="survol_linkedin">    
+                    <a href="https://www.instagram.com/romain.allano/" target="_blank"><i class="icon_2 fa-brands fa-linkedin fa-3x"></i></a>
+                </div>
+            
+                <p>Amaury PIGEAT</p>
+            </div>
+
+            <div id="developpeur">
+                <div class="survol_linkedin">    
+                    <a href="https://www.instagram.com/nathan.gdbn/" target="_blank"><i class="icon_2 fa-brands fa-linkedin fa-3x"></i></a>
+                </div>
+                
+                <p>Yanis RUFFLE</p>
+            </div>
+
+            <form id="delete">
+                <button class="fa-solid fa-power-off" id="PO-button" onclick="writeFile('delete', 'DeleteAllMovies')"></button>
+            </form>
+
+        </footer>
     </body>
 
 </html>

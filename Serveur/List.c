@@ -1,5 +1,4 @@
-
-#include "List.h"
+#include "list.h"
 #include "movie.h"
 
 
@@ -35,14 +34,20 @@ void deleteFirst(struct List* l) {
     if (isListEmpty(l)) {
         return;
     }
+    struct Cell* temp = l->head;
     struct Cell* next = l->head->next;
-    free(l->head);
+    deleteMovie(&(temp->movie));
+    free(temp);
     l->head = next;
     l->size--;
 }
 
 
 void deleteList(struct List** l){
+    if(*l == NULL){
+        return ;
+    }
+    struct Cell* iter = (*l)->head;
     while(!isListEmpty(*l)){
         deleteFirst(*l);
     }
@@ -53,5 +58,5 @@ void deleteList(struct List** l){
 // Autres opérations
 
 bool isListEmpty(struct List* l){
-    return l->head == NULL;
+    return l->size == 0;
 }

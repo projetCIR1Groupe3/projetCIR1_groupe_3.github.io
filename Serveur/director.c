@@ -3,9 +3,8 @@
 #include <stdbool.h>
 #include <string.h>
 
-#include "movie.h"
+
 #include "director.h"
-#include "list.h"
 
 
 struct Director* createDirector(char* name){
@@ -29,14 +28,15 @@ struct Director* createDirector(char* name){
 }
 
 void deleteDirector(struct Director** d){
+    if(*d == NULL){
+        return ;
+    }
     struct Director* d1 = *d;
-
     deleteList(&(d1->movieList));
     free(d1->name);
 
     free(d1);
-    (d1)=NULL;
-
+    d1=NULL;
 }
 
 void addMovieDirector(struct Director* d, struct Movie* m){

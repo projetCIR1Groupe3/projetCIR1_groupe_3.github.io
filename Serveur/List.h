@@ -1,9 +1,10 @@
+#ifndef _LIST_H_
+#define _LIST_H_
+
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-#ifndef PROJET_END_LIST_H
-#define PROJET_END_LIST_H
+#include <string.h>
 
 struct Cell {
     struct Movie* movie;
@@ -32,8 +33,6 @@ void deleteList(struct List** l);
 // Autres opérations
 
 bool isListEmpty(struct List* l);
-void printList(struct List* l);
-unsigned int listSize(struct List* l);
 
 
 #endif //PROJET_END_LIST_H

@@ -2,13 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef CFILES_NETFLUX_H
-#define CFILES_NETFLUX_H
+#ifndef _NETFLUX_H
+#define _NETFLUX_H
+
+#include "list.h"
+#include "NodeTrie.h"
 
 struct Netflux {
-    struct NodeTrie* $;
+    struct NodeTrie* trie;
     struct List* lengthSort[400]; //tableau de list de film
-    struct director* biggest;
+    struct Director* biggest;
 };
 
 //Opération de création
@@ -18,6 +21,7 @@ struct Netflux* createNetflux();
 //Opération de suppression
 
 void deleteNetflux(struct Netflux** netflux);
+void deleteLenghtSort(struct List** lenghtSort);
 
 
 

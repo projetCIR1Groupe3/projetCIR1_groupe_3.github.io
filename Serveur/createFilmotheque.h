@@ -8,7 +8,7 @@
 
 #include "netflux.h"
 
-struct Netflux* createFilmotheque();
+struct Netflux* createFilmotheque(char* fileName);
 
 struct Movie* recupMovie(char* str);
 

@@ -5,9 +5,9 @@
 
 #include "createFilmotheque.h"
 
-struct Netflux* createFilmotheque(){
+struct Netflux* createFilmotheque(char* fileName){
     struct Netflux* N = createNetflux();
-    FILE* file = fopen("BD_medium.txt","r");
+    FILE* file = fopen(fileName,"r");
     char str[100];
     struct Movie* m;
     struct Director* d;

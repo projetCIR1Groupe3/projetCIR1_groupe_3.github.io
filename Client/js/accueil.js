@@ -1,4 +1,6 @@
 var currentPage = 1;
+var nb_movies = -1;
+var nb_page;
 
 function main(){
     document.addEventListener("DOMContentLoaded", function(event) {                         //Effectue cette fonction lorsque le DOM est chargé
@@ -12,6 +14,9 @@ function main(){
                 event.currentTarget.classList.toggle("active");                 //On active la classe CSS sur ce bouton
             });  
         });
+
+        resizeBDD();
+
     })
 }
 
@@ -128,37 +133,45 @@ function searchFilter(){
 
     let size = document.querySelector(".searchbar").value.length;
     let txt = document.querySelector(".searchbar").value
-    for(let i=0;i<size;i++){
-        if(txt[i] != "a" && txt[i] && "b" && txt[i] && "c" && txt[i] && "d" && txt[i] != "e" && txt[i] != "f" && txt[i] != "g" && txt[i] != "h" && txt[i] != "i" && txt[i] != "j" && txt[i] != "k" && txt[i] != "l" && txt[i] != "m" && txt[i] != "n" && txt[i] != "o" && txt[i] != "p" && txt[i] != "q" && txt[i] != "r" && txt[i] != "s" && txt[i] != "t" && txt[i] != "u" && txt[i] != "v" && txt[i] != "w" && txt[i] != "x" && txt[i] != "y" && txt[i] != "z" && txt[i] != "-" && txt[i] != "'"){
-            alert("Veuillez faire une recherche cohérente avec votre filtre")
-            return;
+    
+    if(document.querySelector("#recherche_real.active")){
+        for(let i=0;i<size;i++){
+            if(txt[i] != "a" && txt[i] != "b" && txt[i] != "c" && txt[i] != "d" && txt[i] != "e" && txt[i] != "f" && txt[i] != "g" && txt[i] != "h" && txt[i] != "i" && txt[i] != "j" 
+            && txt[i] != "k" && txt[i] != "l" && txt[i] != "m" && txt[i] != "n" && txt[i] != "o" && txt[i] != "p" && txt[i] != "q" && txt[i] != "r" && txt[i] != "s" && txt[i] != "t" 
+            && txt[i] != "u" && txt[i] != "v" && txt[i] != "w" && txt[i] != "x" && txt[i] != "y" && txt[i] != "z" && txt[i] != "-" && txt[i] != "'" && txt[i] != "A" && txt[i] != "B" 
+            && txt[i] != "C" && txt[i] != "D" && txt[i] != "E" && txt[i] != "F" && txt[i] != "G" && txt[i] != "H" && txt[i] != "I" && txt[i] != "J" && txt[i] != "K" && txt[i] != "L" 
+            && txt[i] != "M" && txt[i] != "N" && txt[i] != "O" && txt[i] != "P" && txt[i] != "Q" && txt[i] != "R" && txt[i] != "S" && txt[i] != "T" && txt[i] != "U" && txt[i] != "V" 
+            && txt[i] != "W" && txt[i] != "X" && txt[i] != "Y" && txt[i] != "Z"){
+                alert("Veuillez faire une recherche cohérente avec votre filtre")
+                return;
+            }
+            else{
+                writeFile("div-recherche", "realisateur");
+                return;
+            }
         }
-        else{
-            console.log("lettre bonne")
+    }
+    else if(document.querySelector("#recherche_duree.active")){
+        for(let i=0;i<size;i++){
+            if(txt[i] != "1" && txt[i] != "2" && txt[i] != "3" && txt[i] != "4" && txt[i] != "5" && txt[i] != "6" && txt[i] != "7" && txt[i] != "8" && txt[i] != "9"){
+                alert("Veuillez faire une recherche cohérente avec votre filtre")
+                return;
+            }
+            else{
+                writeFile("div-recherche", "duree");
+                return;
+            }
         }
+    }
+    else{
+        alert("Veuillez selectionner un filtre");
     }
     
 }
 
-function requestFilter(){
-    const filterReal = document.querySelector("#recherche_real.active");
-    const filterDuree = document.querySelector("#recherche_duree.active");
-    if(filterReal){
-        writeFile("div-recherche", "realisateur");
-    }
-    else {
-        if(filterDuree){
-            writeFile("div-recherche", "duree");
-        }
-        else{
-            alert("Veuillez choisir un filtre")
-        }
-    }
-}
-
 function nextPage(){
     delMoviePage();
-    if(currentPage >= 999){
+    if(currentPage >= nb_page-1){
         alert("Vous ne pouvez pas allez plus loin")
     }
     else{
@@ -168,12 +181,12 @@ function nextPage(){
 
 function lastPage(){
     delMoviePage();
-    currentPage=999;
+    currentPage=nb_page-1;
 }
 
 function previousPage(){
     delMoviePage();
-    if(currentPage <= 0){
+    if(currentPage <= 1){
         alert("Vous ne pouvez pas allez plus loin")
     }
     else{
@@ -183,7 +196,7 @@ function previousPage(){
 
 function firstPage(){
     delMoviePage();
-    currentPage=0;
+    currentPage=1;
 }
 
 function delMoviePage(){
@@ -194,12 +207,12 @@ function stylePagination(){
     
     document.getElementById("actualPage").innerHTML = currentPage;
 
-    if(currentPage==0){
+    if(currentPage==1){
         document.getElementById("actualPage").innerHTML = currentPage;
         document.getElementById("firstPage").classList.toggle("paginationActive");
         document.getElementById("lastPage").classList.remove("paginationActive");
     }
-    else if(currentPage==999){
+    else if(currentPage==nb_page-1){
         document.getElementById("lastPage").classList.toggle("paginationActive");
         document.getElementById("firstPage").classList.remove("paginationActive");
     }
@@ -208,6 +221,21 @@ function stylePagination(){
         document.getElementById("lastPage").classList.remove("paginationActive");
     }
     
+}
+
+function resizeBDD(){
+    const movies = csvToArray(readFile());
+
+    let nb_movies = -1;
+
+    movies.forEach(movie => {
+        nb_movies+=1;
+    })
+
+    nb_page = nb_movies / 50
+    
+    document.getElementById("lastPage").innerHTML = nb_page;
+
 }
 
 main();

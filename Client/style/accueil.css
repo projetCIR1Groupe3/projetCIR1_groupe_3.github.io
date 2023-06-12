@@ -138,7 +138,7 @@ footer{
     color: white;
     display:grid;
     grid-template-rows:11vh;
-    grid-template-columns:40% 20% 20% 20%;
+    grid-template-columns:30% 20% 20% 20% 10%;
 }
 
 footer p{
@@ -156,6 +156,16 @@ footer p{
     align-items: center;
     font-weight: bold;
 }
+
+#delete{
+    margin-top: 4%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    font-weight: bold;
+    scale: 1.5;
+}
+
 
 .fa-linkedin {
     color: white;

@@ -1,11 +1,11 @@
-#ifndef _PROJETC_MOVIE_H_
-#define _PROJETC_MOVIE_H_
+#ifndef _MOVIE_H_
+#define _MOVIE_H_
 
 struct Movie{
     unsigned int length;
     char* title;
     char* genre;
-    char* directorName; //mettre en minuscules, créer une fonction qui enlève toutes les majuscules
+    char* directorName;
 };
 
 //PROJETC_MOVIE_H

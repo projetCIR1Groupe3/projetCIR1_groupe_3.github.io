@@ -68,13 +68,11 @@ void requestExe(struct Netflux* n){
             fclose(file);
             remove("request.txt");
             if(strcmp(filtre, "realisateur")){
-                searchByDirector(n, recherche);
-                ListToTxt(l);
+                struct List* l = searchByDirector(n, recherche);
             }
             else if(strcmp(filtre, "duree")){
                 int lenght = atoi(recherche);
-                searchByLenght(n,lenght);
-                ListToTxt(l);
+                struct List* l = searchByLenght(n,lenght);
             }
             else if(strcmp(filtre, "DeleteAllMovies")){
                 deleteNetflux(n);
@@ -87,6 +85,7 @@ void requestExe(struct Netflux* n){
 
     clock_t end = clock();
     time_spent += (double)(end - start) / CLOCKS_PER_SEC;
-
-    printf("Le programme à mis %f secondes à se faire", time_spent); // ça tu le recup et tu l'envoie dans le fichier
+    printf("Le programme à mis %f secondes à se faire", time_spent);
+    // ça tu le recup et tu l'envoie dans le fichier
+    ListToTxt(l);
 }

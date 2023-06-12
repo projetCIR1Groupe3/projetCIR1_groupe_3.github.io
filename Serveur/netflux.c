@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 #include "netflux.h"
-#include "List.h"
+#include "list.h"
 #include "nodeTrie.h"
 
 

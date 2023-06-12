@@ -49,7 +49,7 @@ function readFileByName(fileName){
 }
 
 function readFile(){
-    return readFileByName("../../support_files_2023/BD_small.txt");
+    return readFileByName("../../support_files_2023/BD_medium.txt");
 }
 
 function csvToArray(data) {     //Fonction prenant "data", une chaine de caractere en CSV

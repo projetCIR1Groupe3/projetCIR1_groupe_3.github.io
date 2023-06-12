@@ -69,19 +69,20 @@ void requestExe(struct Netflux* n){
 
             fclose(file);
             remove("request.txt");
-            if(filtre == "realisateur"){
+            if(strcmp(filtre, "realisateur")){
                 //searchByDirector(n, recherche);
                 //ListToTxt(l);
             }
-            else if(filtre == "duree"){
+            else if(strcmp(filtre, "duree")){
                 int lenght = atoi(recherche);
                 //searchByLength(n,recherche);
                 //ListToTxt(l);
             }
-            else if(filtre == "DeleteAllMovies"){
+            else if(strcmp(filtre, "DeleteAllMovies")){
                 deleteNetflux(n);
             }
-            else if(filtre == "BiggestReal"){
+            else if(strcmp(filtre, "BiggestReal")){
+
             }
         }
     }

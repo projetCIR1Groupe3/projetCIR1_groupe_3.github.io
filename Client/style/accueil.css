@@ -196,3 +196,11 @@ footer p{
     transition: 0.5s ease;
     scale: 1.1;
 }
+
+#pagination{
+    color: aqua;
+    margin-bottom: 5rem;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

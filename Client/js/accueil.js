@@ -72,7 +72,7 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
 
     for (let i = 0; i < movies.length-1; i++) {                 //Parcourt tous les éléments du tableau -1
         const movie = movies[i];
-      
+            
         const movieElement = document.createElement("div");     //On crée une balise <div>
         movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
       

@@ -36,7 +36,7 @@ void requestExe(struct Netflux* n){
     int stop = 0;
     while(stop == 0) {
         if (checkIfFileExists("request.txt")) {
-            FILE *file = fopen("request.txt", "r");
+            FILE *file = fopen("request.txt", "w+");
 
 
             char* token;
@@ -87,5 +87,6 @@ void requestExe(struct Netflux* n){
 
     clock_t end = clock();
     time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+
     printf("Le programme à mis %f secondes à se faire", time_spent); // ça tu le recup et tu l'envoie dans le fichier
 }

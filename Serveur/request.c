@@ -71,12 +71,12 @@ void requestExe(struct Netflux* n){
             remove("request.txt");
             if(strcmp(filtre, "realisateur")){
                 //searchByDirector(n, recherche);
-                //ListToTxt(l);
+                ListToTxt(l);
             }
             else if(strcmp(filtre, "duree")){
                 int lenght = atoi(recherche);
                 //searchByLength(n,recherche);
-                //ListToTxt(l);
+                ListToTxt(l);
             }
             else if(strcmp(filtre, "DeleteAllMovies")){
                 deleteNetflux(n);

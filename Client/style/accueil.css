@@ -75,6 +75,10 @@ form#biggest{
     border-radius: 0.5em;
 }
 
+#biggest button{
+    border: none;
+}
+
 .recherche-boutton.active{
     background-color: #40393D;
     font-weight: bold;
@@ -158,7 +162,7 @@ footer p{
     font-weight: bold;
 }
 
-#developpeur{
+.developpeur{
     margin-top: 4%;
     display: flex;
     position: relative;

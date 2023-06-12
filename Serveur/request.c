@@ -1,8 +1,3 @@
-#include <stdbool.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <string.h>
 
 #include "request.h"
 
@@ -35,6 +30,9 @@ void ListToTxt(struct List* l){
 
 
 void requestExe(struct Netflux* n){
+    double time_spent = 0.0;
+    clock_t start = clock();
+
     int stop = 0;
     while(stop == 0) {
         if (checkIfFileExists("request.txt")) {
@@ -86,4 +84,8 @@ void requestExe(struct Netflux* n){
             }
         }
     }
+
+    clock_t end = clock();
+    time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+    printf("Le programme à mis %f secondes à se faire", time_spent); // ça tu le recup et tu l'envoie dans le fichier
 }

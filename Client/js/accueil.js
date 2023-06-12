@@ -1,3 +1,5 @@
+var currentPage = 1;
+
 function main(){
     document.addEventListener("DOMContentLoaded", function(event) {                         //Effectue cette fonction lorsque le DOM est chargé
         appendMovie();
@@ -68,11 +70,13 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
   function appendMovie() {
     const movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
 
-    const gridMovie = document.querySelector(".grid");      
+    const gridMovie = document.querySelector(".grid");  
 
-    for (let i = 0; i < movies.length-1; i++) {                 //Parcourt tous les éléments du tableau -1
+    let i = 50*currentPage;
+
+    for (i; i < 50 + 50*currentPage; i++) {                 //Parcourt tous les éléments du tableau -1
         const movie = movies[i];
-            
+
         const movieElement = document.createElement("div");     //On crée une balise <div>
         movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
       
@@ -121,7 +125,6 @@ function writeFile(id_form,func) {
 }
 
 function requestFilter(){
-    let button = document.getElementById("request-Filter");
     const filterReal = document.querySelector("#recherche_real.active");
     const filterDuree = document.querySelector("#recherche_duree.active");
     if(filterReal){;
@@ -135,6 +138,60 @@ function requestFilter(){
             alert("Veuillez choisir un filtre")
         }
     }
+}
+
+function nextPage(){
+    delMoviePage();
+    if(currentPage >= 999){
+        alert("Vous ne pouvez pas allez plus loin")
+    }
+    else{
+        currentPage+=1;
+    }
+}
+
+function lastPage(){
+    delMoviePage();
+    currentPage=999;
+}
+
+function previousPage(){
+    delMoviePage();
+    if(currentPage <= 0){
+        alert("Vous ne pouvez pas allez plus loin")
+    }
+    else{
+        currentPage-=1;
+    }
+}
+
+function firstPage(){
+    delMoviePage();
+    currentPage=0;
+}
+
+function delMoviePage(){
+    document.querySelector(".grid").innerHTML = "";
+}
+
+function stylePagination(){
+    
+    document.getElementById("actualPage").innerHTML = currentPage;
+
+    if(currentPage==0){
+        document.getElementById("actualPage").innerHTML = currentPage;
+        document.getElementById("firstPage").classList.toggle("paginationActive");
+        document.getElementById("lastPage").classList.remove("paginationActive");
+    }
+    else if(currentPage==999){
+        document.getElementById("lastPage").classList.toggle("paginationActive");
+        document.getElementById("firstPage").classList.remove("paginationActive");
+    }
+    else{
+        document.getElementById("firstPage").classList.remove("paginationActive");
+        document.getElementById("lastPage").classList.remove("paginationActive");
+    }
+    
 }
 
 main();

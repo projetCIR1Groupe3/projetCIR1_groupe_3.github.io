@@ -25,7 +25,7 @@ void ListToTxt(struct List* l){
     if (fichier != NULL){
         struct Cell* iter = l->head;
         while(iter != NULL){
-            fprintf(fichier, "%s;%s;%s;%s\n", iter->movie->directorName, iter->movie->title, iter->movie->genre, iter->movie->length);
+            fprintf(fichier, "%s;%s;%s;%d\n", iter->movie->directorName, iter->movie->title, iter->movie->genre, iter->movie->length);
             iter = iter->next;
         }
         fclose(fichier);

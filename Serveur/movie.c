@@ -51,7 +51,6 @@ char* getDirectorName(struct Movie* m){
 }
 
 void deleteMovie(struct Movie** m){
-
     free((*m)->directorName);
     free((*m)->genre);
     free((*m)->title);

@@ -6,8 +6,10 @@
 #include<stdbool.h>
 #include<string.h>
 
+#include "director.h"
+
 struct NodeTrie{
-    struct NodeTrie* next[27];
+    struct NodeTrie* next[28];
     struct Director* director;
 };
 
@@ -15,7 +17,7 @@ struct NodeTrie* createEmptyNodeTrie();
 
 void insertDirector(struct NodeTrie* trie, struct Director* director);
 
-void deleteDirector(struct NodeTrie* trie, struct Director* director);
+void deleteDirectorTrie(struct NodeTrie* trie, struct Director* director);
 
 struct Director* findDirector(struct NodeTrie* trie, char* name);
 

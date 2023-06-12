@@ -198,9 +198,23 @@ footer p{
 }
 
 #pagination{
-    color: aqua;
-    margin-bottom: 5rem;
+    color: white;
+    margin-bottom: 6rem;
     display: flex;
     justify-content: center;
     gap: 20px;
+}
+
+#pagination h2{
+    cursor: pointer;
+}
+
+#un{
+    color: var(--color-secondary);
+    text-decoration: underline;
+}
+
+.paginationActive{
+    color: var(--color-secondary);
+    text-decoration: underline;
 }

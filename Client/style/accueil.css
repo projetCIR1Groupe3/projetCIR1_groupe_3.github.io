@@ -69,6 +69,12 @@ img#netflux, #logoISEN {
     font-size: 1.2em;
 }
 
+form#biggest{
+    color: var(--text-color);
+    background-color: var(--color-primary);
+    border-radius: 0.5em;
+}
+
 .recherche-boutton.active{
     background-color: #40393D;
     font-weight: bold;
@@ -86,7 +92,7 @@ main {
     margin: 2vw 0;
 }
 
-div.div-recherche {
+form#div-recherche {
     background-color: var(--text-color);
     border-radius: 1em;
     display: flex;
@@ -95,7 +101,7 @@ div.div-recherche {
     width: 40%;
 }
 
-.div-recherche input {
+#div-recherche input {
     border: none;
     background-color: var(--text-color);
     color: var(--color-primary);

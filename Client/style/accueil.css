@@ -172,7 +172,10 @@ footer p{
     position: relative;
     align-items: center;
     font-weight: bold;
-    scale: 1.5;
+}
+
+#PO-button{
+    border-radius: 0.5em;
 }
 
 

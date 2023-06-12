@@ -63,7 +63,7 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
         return obj;             //On return notre petit tableau
       }, {});
     });
-  }
+}
 
   function appendMovie() {
     const movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
@@ -97,5 +97,44 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
     
       }
   }
+
+function writeFile(id_form,func) {
+
+    var element = document.createElement('a');
+
+    let text1 = document.getElementById(id_form);
+    let count = text1.elements.length;
+    let textToSave = func;
+    for(let i = 0;i<count-1;i++){
+        textToSave += ";" + text1[i].value;
+    }   
+
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToSave));
+    element.setAttribute('download', 'request.txt');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+
+   text1.submit();
+}
+
+function requestFilter(){
+    let button = document.getElementById("request-Filter");
+    const filterReal = document.querySelector("#recherche_real.active");
+    const filterDuree = document.querySelector("#recherche_duree.active");
+    if(filterReal){;
+        writeFile("div-recherche", "realisateur");
+    }
+    else {
+        if(filterDuree){
+            writeFile("div-recherche", "duree");
+        }
+        else{
+            alert("Veuillez choisir un filtre")
+        }
+    }
+}
 
 main();

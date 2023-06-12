@@ -41,11 +41,13 @@
                                 </p>
                             </div>
 
-                            <div id="real_n1" class="nav-boutton">
+
+                            <form id="biggest"><button id="real_n1" class="nav-boutton" onclick="writeFile('delete', 'BiggestReal')">
+
                                 <p id="up">
                                     Réalisateur n°1
                                 </p>
-                            </div>
+                            </button></form>
 
                             <div id="recherche_todo" class="nav-boutton">
                                 <p id="up">
@@ -62,10 +64,10 @@
             <main>
                 
                 <section class="section-recherche">
-                    <div class="div-recherche">
+                    <form id="div-recherche">
                         <input class="searchbar" type="text" placeholder="Recherchez votre film" oninput="search()">
-                        <i class="fa-solid fa-magnifying-glass fa-2x"></i>
-                    </div>
+                        <button id="request-Filter" onclick="requestFilter()"><i class="fa-solid fa-magnifying-glass fa-2x"></button></i></submit>
+                    </form>
                 </section>
 
                 <section class="section-film">
@@ -110,6 +112,10 @@
                 
                 <p>Yanis RUFFLE</p>
             </div>
+
+            <form id="delete">
+                <button class="fa-solid fa-power-off" id="PO-button" onclick="writeFile('delete', 'DeleteAllMovies')"></button>
+            </form>
 
         </footer>
     </body>

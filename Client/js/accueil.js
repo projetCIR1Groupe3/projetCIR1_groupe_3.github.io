@@ -100,7 +100,7 @@ function writeFile(id_form,func) {
     let textToSave = func;
     for(let i = 0;i<count-1;i++){
         textToSave += ";" + text1[i].value;
-    }
+    }   
 
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToSave));
     element.setAttribute('download', 'request.txt');
@@ -111,6 +111,23 @@ function writeFile(id_form,func) {
     document.body.removeChild(element);
 
    text1.submit();
+}
+
+function requestFilter(){
+    let button = document.getElementById("request-Filter");
+    const filterReal = document.querySelector("#recherche_real.active");
+    const filterDuree = document.querySelector("#recherche_duree.active");
+    if(filterReal){;
+        writeFile("div-recherche", "realisateur");
+    }
+    else {
+        if(filterDuree){
+            writeFile("div-recherche", "duree");
+        }
+        else{
+            alert("Veuillez choisir un filtre")
+        }
+    }
 }
 
 

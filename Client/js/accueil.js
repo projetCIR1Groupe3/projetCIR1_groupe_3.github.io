@@ -124,10 +124,26 @@ function writeFile(id_form,func) {
    text1.submit();
 }
 
+function searchFilter(){
+
+    let size = document.querySelector(".searchbar").value.length;
+    let txt = document.querySelector(".searchbar").value
+    for(let i=0;i<size;i++){
+        if(txt[i] != "a" && txt[i] && "b" && txt[i] && "c" && txt[i] && "d" && txt[i] != "e" && txt[i] != "f" && txt[i] != "g" && txt[i] != "h" && txt[i] != "i" && txt[i] != "j" && txt[i] != "k" && txt[i] != "l" && txt[i] != "m" && txt[i] != "n" && txt[i] != "o" && txt[i] != "p" && txt[i] != "q" && txt[i] != "r" && txt[i] != "s" && txt[i] != "t" && txt[i] != "u" && txt[i] != "v" && txt[i] != "w" && txt[i] != "x" && txt[i] != "y" && txt[i] != "z" && txt[i] != "-" && txt[i] != "'"){
+            alert("Veuillez faire une recherche cohérente avec votre filtre")
+            return;
+        }
+        else{
+            console.log("lettre bonne")
+        }
+    }
+    
+}
+
 function requestFilter(){
     const filterReal = document.querySelector("#recherche_real.active");
     const filterDuree = document.querySelector("#recherche_duree.active");
-    if(filterReal){;
+    if(filterReal){
         writeFile("div-recherche", "realisateur");
     }
     else {

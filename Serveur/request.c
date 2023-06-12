@@ -5,7 +5,7 @@
 #include <string.h>
 
 #include "request.h"
-#include "createFilmotheque.h"
+
 
 
 int checkIfFileExists(const char * filename)
@@ -34,7 +34,7 @@ void ListToTxt(struct List* l){
 }
 
 
-void requestExe(struct netflux* n){
+void requestExe(struct Netflux* n){
     int stop = 0;
     while(stop == 0) {
         if (checkIfFileExists("request.txt")) {

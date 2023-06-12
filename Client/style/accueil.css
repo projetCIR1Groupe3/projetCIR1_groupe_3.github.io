@@ -117,26 +117,29 @@ form#div-recherche {
     overflow-x: hidden;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: max-content;
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     width: 100%;
-    margin: 0 3em;
-    gap: 1rem;
+    padding: 50px;
 }
 
 .film {
+    text-align: center;
+    padding-top: 2.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 1em 0;
+    height: 10rem;
+    margin-bottom: 3rem;
     background-color: var(--color-tertiary);
+    width: 20rem;
 }
 
 
 footer{
-    background-color:#D81F26;
+    background-color:var(--color-secondary);
     position: relative;
     bottom: 0;
     width: 100%;
@@ -177,3 +180,11 @@ footer p{
     color: white;
 }
 
+#netflux{
+    cursor: pointer;
+}
+
+#netflux:hover{
+    transition: 0.5s ease;
+    scale: 1.1;
+}

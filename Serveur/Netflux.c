@@ -4,7 +4,7 @@
 
 #include "Netflux.h"
 #include "List.h"
-#include "NodeTrie.h"
+#include "nodeTrie.h"
 
 //Opération de création
 

@@ -1,81 +1,66 @@
-0.15
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
-Faris;The Fighting Spawn;161;Sports
+0.84
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War
+Fox;The Childhood Legionnaire;259;Horror
+Monoter;The Army of Leandron;306;War

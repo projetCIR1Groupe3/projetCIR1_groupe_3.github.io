@@ -79,15 +79,15 @@
                 </section>
 
                 <div id="pagination">
-                    <h2 onclick="firstPage();stylePagination()">&lt;&lt;</h2>
-                    <h2 onclick="previousPage();stylePagination()">&lt;</h2>
-                    <h2 id="firstPage">0</h2>
+                    <h2 onclick="firstPage();stylePagination();appendMovie();appendResult()">&lt;&lt;</h2>
+                    <h2 onclick="previousPage();stylePagination();appendMovie();appendResult()">&lt;</h2>
+                    <h2 id="firstPage">1</h2>
                     <h2>...</h2>
                     <h2 id="actualPage"></h2>
                     <h2>...</h2>
                     <h2 id="lastPage">1000</h2>
-                    <h2 onclick="nextPage();stylePagination()">&gt;</h2>
-                    <h2 onclick="lastPage();stylePagination()">&gt;&gt;</h2>
+                    <h2 onclick="nextPage();stylePagination();appendMovie();appendResult()">&gt;</h2>
+                    <h2 onclick="lastPage();stylePagination();appendMovie();appendResult()">&gt;&gt;</h2>
                 </div>
 
             </main>

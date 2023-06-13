@@ -28,6 +28,9 @@ function main(){
             resizeBDD();
             appendResult();
         }
+        else{
+            allMovie('all','AllMovies');
+        }
 
     })
 }
@@ -131,6 +134,12 @@ function writeFile(id_form,func) {
     document.body.removeChild(element);
    text1.submit();
 }
+
+function allMovie(id_form,func) {
+    writeFile(id_form, func);
+    resetFilters();
+}
+
 function searchFilter(){
 
     let size = document.querySelector(".searchbar").value.length;

@@ -85,27 +85,27 @@ struct Director* findDirector(struct NodeTrie* trie, char* name){
     int n = strlen(name);
     for(int i = 0;i < n;i++){
         if(name[i] == '-'){
-            if(trie->next[26] == NULL){
+            if(iter->next[26] == NULL){
                 return NULL;
             }
-            trie = trie->next[26];
+            iter = iter->next[26];
         }
         else{
             if(name[i] == '\''){
-                if(trie->next[27] == NULL){
+                if(iter->next[27] == NULL){
                     return NULL;
                 }
-                trie = trie->next[27];
+                iter = iter->next[27];
             }
             else{
-                if(trie->next[name[i]-'a'] == NULL){
+                if(iter->next[name[i]-'a'] == NULL){
                     return NULL;
                 }
-                trie = trie->next[name[i]-'a'];
+                iter = iter->next[name[i]-'a'];
             }
         }
     }
-    return trie->director;
+    return iter->director;
 }
 
 void deleteNodeTrie(struct NodeTrie** trie){

@@ -66,7 +66,10 @@ function readFileByName(fileName){
 }
 
 function csvToArray(data) {     //Fonction prenant "data", une chaine de caractere en CSV
-    const lines = data.split('\n');                         //Crée un tableau à chaque ligne
+    const lines = data.split('\n');
+    if(lines[1] == "NULL"){
+        return "NULL";
+    }                         //Crée un tableau à chaque ligne
     const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
   
     return lines.map(line => {                                      //On parcourt chaque ligne du tableau
@@ -78,17 +81,20 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
     });
 }
 
-  function appendMovie() {
+function appendMovie() {
 
     myResults = readFile();
 
-    if(myResults == 404){
+    if(myResults != 404){
 
         const movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
         const gridMovie = document.querySelector(".grid");  
 
         let i = 50*currentPage;
-
+        if(movies == "NULL"){
+            gridMovie.innerHTML = "<h3>Votre recherche n'a mené à rien</h3>";
+            return ;
+        }
         for (i; i < 50 + 50*currentPage; i++) {                 //Parcourt tous les éléments du tableau -1
             const movie = movies[i];
             const movieElement = document.createElement("div");     //On crée une balise <div>
@@ -115,8 +121,7 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
         
         }
     }
-
-  }
+}
 
 function writeFile(id_form,func) {
     var element = document.createElement('a');
@@ -333,14 +338,6 @@ function resizeBDD(){
 
 }
 
-
-
-
-
-
-
-
-
 function appendResult(){
     myResults = readFile();
 
@@ -353,7 +350,7 @@ function appendResult(){
         const gridMovie = document.querySelector(".grid");  
 
         let i = 50*RequestCurrentPage;
-
+        
         for (i; i < 50 + 50*RequestCurrentPage; i++) {                 //Parcourt tous les éléments du tableau -1
 
             const movie = movies[i];
@@ -366,8 +363,13 @@ function appendResult(){
             const movieReal = document.createElement("p");          //On crée une balise <p>
             movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
         
-            const movieDuree = document.createElement("p");                                     //On crée une balise <p>
-            movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+            const movieDuree = document.createElement("p");         //On crée une balise <p>
+            if(movie.duree % 60 <10){
+                movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + "0" + movie.duree % 60; 
+            }                                    
+            else{
+                movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+            }
         
             const movieGenre = document.createElement("p");         //On crée une balise <p>
             movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film

@@ -73,6 +73,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                     }
                 }
                 if(contain){
+                    printf("pour voir 2");
                     token = strtok(str,";");
                     strcpy(filtre,token); // première itération
                     i = 0;
@@ -88,18 +89,23 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                         }
                         i++;
                     }
+                    printf("pour voir 3");
                 }
                 else{
                     strcpy(filtre,str);
+                    printf("pour voir 1");
                 }
             }
 
             fclose(file);
             remove("../Client/request.txt"); //supprime le request.txt pour éviter de lire la même requête plusieurs fois
-
+            printf("filtre : %s\n", filtre);
+            printf("token : %s\n", token);
+            printf("str : %s\n", str);
+            printf("recherche : %s\n", recherche);
             //On fait une série de "if" et de "else" pour savoir quelle fonction exécuter suivant le filtre
-
             if(strcmp(filtre, "realisateur")==0){
+                printf("realisateur\n");
                 struct List* l = searchByDirector(n, recherche);
                 clock_t end = clock();      //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
@@ -115,6 +121,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
 
             }
             else if(strcmp(filtre, "duree")==0){        //on fait presque la même chose que précédemment
+                printf("duree\n");
                 int lenght = atoi(recherche);   //on convertit la recherche en int sachant que la recherche correspond à une durée
                 struct List* l = searchByLenght(n,lenght);
                 clock_t end = clock();      //comme précédemment on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
@@ -131,6 +138,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
 
             }
             else if(strcmp(filtre, "DeleteAllMovies")==0){
+                printf("DeleteAllMovies\n");
                 deleteNetflux(&n);          //on supprime la base de données
                 clock_t end = clock();              //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
@@ -146,6 +154,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
 
             }
             else if(strcmp(filtre, "BiggestReal")==0){
+                printf("BiggestReal\n");
                 char *name = getBiggestDirector(n)->name;       //on récupère le nom du réalisateur qui a réalisé le plus de films
                 int nb = n->biggest->movieList->size;                //on récupère le nombre de films qu'il a réalisé
 
@@ -167,6 +176,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
 
             }
             else if(strcmp(filtre, "AllMovies")==0){
+                printf("AllMovies\n");
                 FILE* fichier = NULL;
                 fichier = fopen("../Client/resultat.txt","a");
                 struct List* iterList;
@@ -185,6 +195,8 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 FILE *ready = NULL;
                 ready = fopen("../Client/ready.txt", "w");        //on écrit un fichier "ready.txt" pour dire que le fichier est prêt à être lu
                 fclose(ready);
+            } else{
+                printf("%s\n",filtre);
             }
         }
     }

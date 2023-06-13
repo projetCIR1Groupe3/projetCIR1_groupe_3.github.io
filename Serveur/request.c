@@ -6,7 +6,7 @@
 int checkIfFileExists(const char * filename)
 {
     FILE *file;
-    if (file = fopen(filename, "r")){
+    if ((file = fopen(filename, "r"))){
         fclose(file);
         return 1;
     }
@@ -115,7 +115,7 @@ void requestExe(struct Netflux* n){
             else if(strcmp(filtre, "BiggestReal")==0){
                 FILE *fichier = NULL;
                 fichier = fopen("resultat.txt", "w");
-                fprintf(fichier, "%s;%d\n", getBiggestDirector(n), n->biggest->movieList->size);
+                fprintf(fichier, "%s;%d\n", getBiggestDirector(n)->name, n->biggest->movieList->size);
                 fclose(fichier);
                 clock_t end = clock();
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;

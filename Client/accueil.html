@@ -25,9 +25,9 @@
         
             <header id="header">
                 <nav class="navbar">
-                        <div class="nav-logo-left" onclick="resetFilters()">
-                            <img src="images/NETFLUX.png" alt="Image Not Found" id="netflux">
-                        </div>
+                        <form class="nav-logo-left" onclick="resetFilters()" id="all">
+                            <img src="images/NETFLUX.png" alt="Image Not Found" id="netflux" onclick="allMovie('all','AllMovies')">
+                        </form>
                         <ul class="liste-nav">
                             <div id="recherche_real" class="nav-boutton recherche-boutton">
                                 <p id="up">
@@ -42,7 +42,7 @@
                             </div>
 
 
-                            <form id="biggest"><button id="real_n1" class="nav-boutton" onclick="writeFile('delete', 'BiggestReal')">
+                            <form id="biggest"><button id="real_n1" class="nav-boutton" onclick="writeFile('biggest', 'BiggestReal')">
 
                                 <p id="up">
                                     Réalisateur n°1

@@ -25,7 +25,7 @@ function main(){
         myResults = readFile();
 
         if(myResults != 404){
-            resizeBDD();
+            RequestresizeBDD();
             appendResult();
         }
 
@@ -188,9 +188,6 @@ function nextPage(){
         }
     
         else{
-
-            console.log("request current page : ",RequestCurrentPage);
-            console.log("request nb page : ",RequestNb_Page);
             
             delMoviePage();
             if(RequestCurrentPage >= RequestNb_Page-1){
@@ -299,7 +296,7 @@ function stylePagination(){
             document.getElementById("firstPage").classList.toggle("paginationActive");
             document.getElementById("lastPage").classList.remove("paginationActive");
         }
-        else if(RequestCurrentPage==RequestNb_Page-1){
+        else if(RequestCurrentPage==RequestNb_Page){
             document.getElementById("lastPage").classList.toggle("paginationActive");
             document.getElementById("firstPage").classList.remove("paginationActive");
         }
@@ -349,32 +346,30 @@ function appendResult(){
         let i = 50*RequestCurrentPage;
 
         for (i; i < 50 + 50*RequestCurrentPage; i++) {                 //Parcourt tous les éléments du tableau -1
-            if(i<RequestNb_Page){
 
-                const movie = movies[i];
-                const movieElement = document.createElement("div");     //On crée une balise <div>
-                movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
-            
-                const movieTitle = document.createElement("h4");        //On crée une balise <h4>
-                movieTitle.innerText = movie.titre;                     //A laquelle on ajoute le titre tu film (grâce a la clé titre)
-            
-                const movieReal = document.createElement("p");          //On crée une balise <p>
-                movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
-            
-                const movieDuree = document.createElement("p");                                     //On crée une balise <p>
-                movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
-            
-                const movieGenre = document.createElement("p");         //On crée une balise <p>
-                movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
-            
-                movieElement.appendChild(movieTitle);                   //On ajoute titre, réalisateur, durée et genre à notre div movieElement
-                movieElement.appendChild(movieReal);
-                movieElement.appendChild(movieDuree);
-                movieElement.appendChild(movieGenre);
-            
-                gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
+            const movie = movies[i];
+            const movieElement = document.createElement("div");     //On crée une balise <div>
+            movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
+        
+            const movieTitle = document.createElement("h4");        //On crée une balise <h4>
+            movieTitle.innerText = movie.titre;                     //A laquelle on ajoute le titre tu film (grâce a la clé titre)
+        
+            const movieReal = document.createElement("p");          //On crée une balise <p>
+            movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
+        
+            const movieDuree = document.createElement("p");                                     //On crée une balise <p>
+            movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+        
+            const movieGenre = document.createElement("p");         //On crée une balise <p>
+            movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
+        
+            movieElement.appendChild(movieTitle);                   //On ajoute titre, réalisateur, durée et genre à notre div movieElement
+            movieElement.appendChild(movieReal);
+            movieElement.appendChild(movieDuree);
+            movieElement.appendChild(movieGenre);
+        
+            gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
 
-            }
         }
     }
 
@@ -417,7 +412,10 @@ function RequestresizeBDD(){
         RequestNb_Movies+=1;
     })
 
-    RequestNb_Page = Math.round(RequestNb_Movies / 50)
+    console.log(RequestNb_Movies)
+
+    RequestNb_Page = Math.ceil(RequestNb_Movies / 50)
+    console.log(RequestNb_Page)
 
     document.getElementById("lastPage").innerHTML = RequestNb_Page;
 

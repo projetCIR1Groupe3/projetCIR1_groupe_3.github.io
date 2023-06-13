@@ -92,7 +92,7 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
         movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
       
         const movieDuree = document.createElement("p");                                     //On crée une balise <p>
-        movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+        movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + inf10(movie.duree % 60);       //A laquelle on ajoute la durée du film (en heure)
       
         const movieGenre = document.createElement("p");         //On crée une balise <p>
         movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
@@ -106,6 +106,13 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
     
       }
   }
+
+  function inf10(time) {                  // On fait une fonction qui modifie l'affichage afin d'aficher "09" au lieu de "9"
+    if (time < 10) {
+        time = '0' + time
+    }
+    return time;
+}
 
 function writeFile(id_form,func) {
 

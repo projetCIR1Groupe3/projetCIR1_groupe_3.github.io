@@ -24,7 +24,7 @@ function main(){
          
         console.log("DOM fully loaded and parsed");
         
-        if(myResults != 404){ 
+        if(myResults == 404){ 
             allMovie('all','AllMovies');
         }
         

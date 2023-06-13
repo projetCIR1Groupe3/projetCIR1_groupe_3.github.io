@@ -219,7 +219,7 @@ footer p{
     text-decoration: underline;
 }
 
-#showTime{
+#showTime,.textShow{
     color: white;
     text-align: center;
 }

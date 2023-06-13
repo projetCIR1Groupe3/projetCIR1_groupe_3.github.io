@@ -78,14 +78,19 @@ void requestExe(struct Netflux* n){
                 deleteNetflux(n);
             }
             else if(strcmp(filtre, "BiggestReal")){
-
+                FILE *fichier = NULL;
+                fichier = fopen("resultat.txt", "w");
+                fprintf(fichier, "%s;%d\n", getBiggestDirector(n), n->biggest->movieList->size);
+                fclose(fichier);
             }
         }
     }
 
     clock_t end = clock();
     time_spent += (double)(end - start) / CLOCKS_PER_SEC;
-    printf("Le programme à mis %f secondes à se faire", time_spent);
-    // ça tu le recup et tu l'envoie dans le fichier
+    FILE *fichier = NULL;
+    fichier = fopen("resultat.txt", "w");
+    fprintf(fichier, "%f\n", time_spent);
+    fclose(fichier);
     ListToTxt(l);
 }

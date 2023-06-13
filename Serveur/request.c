@@ -15,7 +15,7 @@ int checkIfFileExists(const char * filename){       //fonction qui vérifie si l
 
 void ListToTxt(struct List* l){         //fonction qui écrit la liste dans un fichier texte
     FILE *fichier = NULL;
-    fichier = fopen("resultat.txt", "w");
+    fichier = fopen("resultat.txt", "w+");
     if(l==NULL){
         fprintf(fichier, "NULL\n");         //si la liste est vide alors on écrit que rien ne correspond
         fclose(fichier);
@@ -89,7 +89,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();      //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;
-                fichier = fopen("resultat.txt", "w");
+                fichier = fopen("resultat.txt", "w+");
                 fprintf(fichier, "%f\n", time_spent);     //on écrit le temps d'exécution dans le fichier
                 fclose(fichier);
                 ListToTxt(l);       //on écrit la liste dans le fichier
@@ -105,7 +105,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();      //comme précédemment on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;
-                fichier = fopen("resultat.txt", "w");
+                fichier = fopen("resultat.txt", "w+");
                 fprintf(fichier, "%f\n", time_spent);   //on écrit le temps d'exécution dans le fichier
                 fclose(fichier);
                 ListToTxt(l);           //on écrit la liste dans le fichier
@@ -120,7 +120,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();              //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;
-                fichier = fopen("resultat.txt", "w");
+                fichier = fopen("resultat.txt", "w+");
                 fprintf(fichier, "%f\n", time_spent);       //on écrit le temps d'exécution dans le fichier
                 fclose(fichier);
 
@@ -137,12 +137,12 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();          //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier2 = NULL;
-                fichier2 = fopen("resultat.txt", "w");      //on écrit le temps d'exécution dans le fichier
+                fichier2 = fopen("resultat.txt", "w+");      //on écrit le temps d'exécution dans le fichier
                 fprintf(fichier2, "%f\n", time_spent);
                 fclose(fichier2);
 
                 FILE *fichier = NULL;
-                fichier = fopen("resultat.txt", "w");
+                fichier = fopen("resultat.txt", "w+");
                 fprintf(fichier, "%s;%d\n", name, nb);          //on écrit le nom du réalisateur et le nombre de films qu'il a réalisé
                 fclose(fichier);
 
@@ -150,6 +150,26 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 ready = fopen("ready.txt", "w");            //on écrit un fichier "ready.txt" pour dire que le fichier est prêt à être lu
                 fclose(ready);
 
+            }
+            else if(strcmp(filtre, "AllMovies")==0){
+                FILE* fichier = NULL;
+                fichier = fopen("resultat.txt","w+");
+                struct List* iterList;
+
+                clock_t end = clock();          //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
+                time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+
+                fprintf(fichier, "%f\n", time_spent);
+                fclose(fichier);
+
+                for(int j = 0;j < 400;j++){
+                    iterList = n->lengthSort[j];
+                    ListToTxt(iterList);
+                }
+
+                FILE *ready = NULL;
+                ready = fopen("ready.txt", "w");        //on écrit un fichier "ready.txt" pour dire que le fichier est prêt à être lu
+                fclose(ready);
             }
         }
     }

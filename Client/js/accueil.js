@@ -7,8 +7,9 @@ var RequestNb_Movies;
 var RequestNb_Page;
 
 function main(){
+    window.onload = allMovie('all','AllMovies');
+
     document.addEventListener("DOMContentLoaded", function(event) {
-        
         const tableauBoutonRecherche = document.querySelectorAll(".recherche-boutton");        
         
         tableauBoutonRecherche.forEach(function(boutonRecherche){               //Pour chaque élément du tableauBoutonRecherche on fait :
@@ -21,12 +22,14 @@ function main(){
         
         myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
-        
+        console.log("hello1");
         if(myResults == 404){ 
             allMovie('all','AllMovies');
+            console.log("hello2");
         }
         
         else{
+            console.log("hello3");
             RequestresizeBDD();
             appendResult();
         }
@@ -334,13 +337,6 @@ function resizeBDD(){
 }
 
 
-
-
-
-
-
-
-
 function appendResult(){
     myResults = readFile();
 
@@ -404,7 +400,6 @@ function RequestcsvToArray(data) {     //Fonction prenant "data", une chaine de 
     
 
 }
-
 
 
 function readFile(){

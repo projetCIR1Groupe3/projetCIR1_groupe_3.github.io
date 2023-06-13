@@ -37,7 +37,6 @@ void ListToTxt(struct List* l){         //fonction qui écrit la liste dans un f
 void requestExe(struct Netflux* n){       //fonction qui recupère la requête et qui exécute la fonction correspondante
     double time_spent = 0.0;
     clock_t start = clock();        //on démarre le timer pour calculer le temps d'exécution
-
     int stop = 0;       //variable qui permet de faire une condition d'arrêt pour la boucle while et donc pour terminer le programme
     while(stop == 0) {
         if (checkIfFileExists("../Client/request.txt")) {             //si le fichier existe alors on peut lire la requête
@@ -49,7 +48,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 remove("../Client/ready.txt");        //on supprime le fichier ready pour éviter de lire le même fichier plusieurs fois
             }
 
-            FILE *file = fopen("../Client/request.txt", "w+");
+            FILE *file = fopen("../Client/request.txt", "r");
 
             //Initialisation des variables
             char* token;
@@ -65,6 +64,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 str[strcspn(str, "\r\n")] = '\0';
                 token = strtok(str,";");
                 strcpy(filtre,token); // première itération
+                i = 0;
                 while(token != NULL) {
                     token = strtok(NULL, ";");
                     switch (i) { //on "slice" avec un compteur pour mettre au bon endroit
@@ -89,7 +89,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();      //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;
-                fichier = fopen("../Client/resultat.txt", "w+");
+                fichier = fopen("../Client/resultat.txt", "a");
                 fprintf(fichier, "%f\n", time_spent);     //on écrit le temps d'exécution dans le fichier
                 fclose(fichier);
                 ListToTxt(l);       //on écrit la liste dans le fichier
@@ -105,7 +105,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();      //comme précédemment on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;
-                fichier = fopen("../Client/resultat.txt", "w+");
+                fichier = fopen("../Client/resultat.txt", "a");
                 fprintf(fichier, "%f\n", time_spent);   //on écrit le temps d'exécution dans le fichier
                 fclose(fichier);
                 ListToTxt(l);           //on écrit la liste dans le fichier
@@ -120,7 +120,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();              //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;
-                fichier = fopen("../Client/resultat.txt", "w+");
+                fichier = fopen("../Client/resultat.txt", "a");
                 fprintf(fichier, "%f\n", time_spent);       //on écrit le temps d'exécution dans le fichier
                 fclose(fichier);
 
@@ -137,12 +137,12 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 clock_t end = clock();          //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier2 = NULL;
-                fichier2 = fopen("../Client/resultat.txt", "w+");      //on écrit le temps d'exécution dans le fichier
+                fichier2 = fopen("../Client/resultat.txt", "a");      //on écrit le temps d'exécution dans le fichier
                 fprintf(fichier2, "%f\n", time_spent);
                 fclose(fichier2);
 
                 FILE *fichier = NULL;
-                fichier = fopen("../Client/resultat.txt", "w+");
+                fichier = fopen("../Client/resultat.txt", "a");
                 fprintf(fichier, "%s;%d\n", name, nb);          //on écrit le nom du réalisateur et le nombre de films qu'il a réalisé
                 fclose(fichier);
 
@@ -153,7 +153,7 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
             }
             else if(strcmp(filtre, "AllMovies")==0){
                 FILE* fichier = NULL;
-                fichier = fopen("../Client/resultat.txt","w+");
+                fichier = fopen("../Client/resultat.txt","a");
                 struct List* iterList;
 
                 clock_t end = clock();          //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier

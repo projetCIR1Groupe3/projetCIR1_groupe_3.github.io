@@ -18,7 +18,7 @@ function main(){
             });  
         });
         
-        /*
+        
         myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
         
@@ -32,7 +32,7 @@ function main(){
         }
         
         stylePagination();
-        */
+        
     })
 }
 

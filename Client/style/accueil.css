@@ -218,3 +218,8 @@ footer p{
     color: var(--color-secondary);
     text-decoration: underline;
 }
+
+#showTime{
+    color: white;
+    text-align: center;
+}

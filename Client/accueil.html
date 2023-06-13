@@ -66,9 +66,11 @@
                 <section class="section-recherche">
                     <form id="div-recherche">
                         <input class="searchbar" type="text" placeholder="Recherchez votre film" oninput="search()">
-                        <button id="request-Filter" onclick="searchFilter()"><i class="fa-solid fa-magnifying-glass fa-2x"></button></i></submit>
+                        <button id="request-Filter" onclick="searchFilter();checkResult()"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
                     </form>
                 </section>
+
+                <p id="showTime">Votre requête a été effectuée en : </p>
 
                 <section class="section-film">
                     <div class="grid">

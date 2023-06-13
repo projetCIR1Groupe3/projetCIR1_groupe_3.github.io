@@ -129,7 +129,7 @@ function writeFile(id_form,func) {
         textToSave += ";" + text1[i].value;
     }   
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToSave));
-    element.setAttribute('download', '../../Serveur/request.txt');
+    element.setAttribute('download', 'request.txt');
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
@@ -410,8 +410,8 @@ function RequestcsvToArray(data) {     //Fonction prenant "data", une chaine de 
 
 
 function readFile(){
-    readFileByName("../../Serveur/ready.txt")
-    return readFileByName("../../Serveur/resultat.txt");
+    readFileByName("ready.txt")
+    return readFileByName("resultat.txt");
 }
 
 function RequestresizeBDD(){

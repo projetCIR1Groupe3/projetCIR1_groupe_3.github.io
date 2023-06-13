@@ -40,7 +40,15 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
 
     int stop = 0;       //variable qui permet de faire une condition d'arrêt pour la boucle while et donc pour terminer le programme
     while(stop == 0) {
-        if (checkIfFileExists("request.txt")) { //si le fichier existe alors on peut lire la requête
+        if (checkIfFileExists("request.txt")) {             //si le fichier existe alors on peut lire la requête
+
+            if (checkIfFileExists("resultat.txt")) {
+                remove("resultat.txt");         //on supprime le fichier résultat pour éviter de lire le même fichier plusieurs fois
+            }
+            if (checkIfFileExists("ready.txt")){
+                remove("ready.txt");        //on supprime le fichier ready pour éviter de lire le même fichier plusieurs fois
+            }
+
             FILE *file = fopen("request.txt", "w+");
 
             //Initialisation des variables

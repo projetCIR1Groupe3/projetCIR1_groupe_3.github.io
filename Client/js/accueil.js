@@ -431,5 +431,22 @@ function RequestresizeBDD(){
 
 }
 
+function showBiggestReal(){
+
+    myResults = readFile();                        
+
+        if(myResults == 404){ 
+            showBiggestReal();
+        }
+        else{
+            const txt = readFile().split(';')
+            let directeur = txt[0]
+            let nb_film = txt[1]
+
+            alert("Le plus gros réalisateur est " + directeur + ", il a réalisé " + nb_film + " films.")
+        }
+
+}
+
 
 main();

@@ -99,7 +99,7 @@ void requestExe(struct Netflux* n){
 
             }
             else if(strcmp(filtre, "DeleteAllMovies")==0){
-                deleteNetflux(n);
+                deleteNetflux(&n);
                 clock_t end = clock();
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
                 FILE *fichier = NULL;

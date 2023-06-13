@@ -18,11 +18,9 @@ function main(){
             });  
         });
         
-        
+        /*
         myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
-         
-        console.log("DOM fully loaded and parsed");
         
         if(myResults == 404){ 
             allMovie('all','AllMovies');
@@ -34,6 +32,7 @@ function main(){
         }
         
         stylePagination();
+        */
     })
 }
 

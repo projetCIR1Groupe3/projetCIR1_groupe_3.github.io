@@ -15,7 +15,7 @@ int checkIfFileExists(const char * filename){       //fonction qui vérifie si l
 
 void ListToTxt(struct List* l){         //fonction qui écrit la liste dans un fichier texte
     FILE *fichier = NULL;
-    fichier = fopen("../Client/resultat.txt", "w+");
+    fichier = fopen("../Client/resultat.txt", "a");
     if(l==NULL){
         fprintf(fichier, "NULL\n");         //si la liste est vide alors on écrit que rien ne correspond
         fclose(fichier);

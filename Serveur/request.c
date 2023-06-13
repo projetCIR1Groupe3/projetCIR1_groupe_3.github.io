@@ -117,6 +117,7 @@ void requestExe(struct Netflux* n){
                 FILE *ready = NULL;
                 ready = fopen("ready.txt", "w");
                 fclose(ready);
+                stop = 1;
 
             }
             else if(strcmp(filtre, "BiggestReal")==0){

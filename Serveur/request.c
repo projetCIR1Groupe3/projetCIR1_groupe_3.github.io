@@ -17,13 +17,20 @@ int checkIfFileExists(const char * filename)
 void ListToTxt(struct List* l){
     FILE *fichier = NULL;
     fichier = fopen("resultat.txt", "w");
-    if (fichier != NULL){
-        struct Cell* iter = l->head;
-        while(iter != NULL){
-            fprintf(fichier, "%s;%s;%s;%d\n", iter->movie->directorName, iter->movie->title, iter->movie->genre, iter->movie->length);
-            iter = iter->next;
-        }
+    if(l==NULL){
+        fprintf(fichier, "Aucun film ne correspond à votre recherche\n");
         fclose(fichier);
+    }
+    else{
+        if (fichier != NULL) {
+            struct Cell *iter = l->head;
+            while (iter != NULL) {
+                fprintf(fichier, "%s;%s;%s;%d\n", iter->movie->directorName, iter->movie->title, iter->movie->genre,
+                        iter->movie->length);
+                iter = iter->next;
+            }
+            fclose(fichier);
+        }
     }
 
 }

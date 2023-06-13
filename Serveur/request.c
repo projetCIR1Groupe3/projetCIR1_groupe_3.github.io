@@ -67,30 +67,49 @@ void requestExe(struct Netflux* n){
 
             fclose(file);
             remove("request.txt");
-            if(strcmp(filtre, "realisateur")){
+            if(strcmp(filtre, "realisateur")==0){
                 struct List* l = searchByDirector(n, recherche);
+                clock_t end = clock();
+                time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+                FILE *fichier = NULL;
+                fichier = fopen("resultat.txt", "w");
+                fprintf(fichier, "%f\n", time_spent);
+                fclose(fichier);
+                ListToTxt(l);
+
             }
-            else if(strcmp(filtre, "duree")){
+            else if(strcmp(filtre, "duree")==0){
                 int lenght = atoi(recherche);
                 struct List* l = searchByLenght(n,lenght);
+                clock_t end = clock();
+                time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+                FILE *fichier = NULL;
+                fichier = fopen("resultat.txt", "w");
+                fprintf(fichier, "%f\n", time_spent);
+                fclose(fichier);
+                ListToTxt(l);
             }
-            else if(strcmp(filtre, "DeleteAllMovies")){
+            else if(strcmp(filtre, "DeleteAllMovies")==0){
                 deleteNetflux(n);
+                clock_t end = clock();
+                time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+                FILE *fichier = NULL;
+                fichier = fopen("resultat.txt", "w");
+                fprintf(fichier, "%f\n", time_spent);
+                fclose(fichier);
             }
-            else if(strcmp(filtre, "BiggestReal")){
+            else if(strcmp(filtre, "BiggestReal")==0){
                 FILE *fichier = NULL;
                 fichier = fopen("resultat.txt", "w");
                 fprintf(fichier, "%s;%d\n", getBiggestDirector(n), n->biggest->movieList->size);
                 fclose(fichier);
+                clock_t end = clock();
+                time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+                FILE *fichier2 = NULL;
+                fichier2 = fopen("resultat.txt", "w");
+                fprintf(fichier2, "%f\n", time_spent);
+                fclose(fichier2);
             }
         }
     }
-
-    clock_t end = clock();
-    time_spent += (double)(end - start) / CLOCKS_PER_SEC;
-    FILE *fichier = NULL;
-    fichier = fopen("resultat.txt", "w");
-    fprintf(fichier, "%f\n", time_spent);
-    fclose(fichier);
-    ListToTxt(l);
 }

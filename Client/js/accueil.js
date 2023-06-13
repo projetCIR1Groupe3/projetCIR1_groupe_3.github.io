@@ -1,7 +1,10 @@
 var currentPage = 1;
+var currentPageRequest;
 var nb_movies = -1;
 var nb_page;
 let counterAffichage = 0;
+let execTime = 0;
+let myResults;
 
 var nb_movies_request = -1;
 var nb_page_request = -1
@@ -10,8 +13,6 @@ function main(){
 
     document.addEventListener("DOMContentLoaded", function(event) {                         //Effectue cette fonction lorsque le DOM est chargé
 
-        appendMovie();
-            
         const tableauBoutonRecherche = document.querySelectorAll(".recherche-boutton");        
         
         tableauBoutonRecherche.forEach(function(boutonRecherche){               //Pour chaque élément du tableauBoutonRecherche on fait :
@@ -23,13 +24,27 @@ function main(){
 
         resizeBDD();
 
+        myResults = readFile("../../Serveur/ready.txt");
+
+        if(myResults == null){
+            appendMovie();
+        }
+        else{
+            checkResult();
+        }
+
     })
+
 }
 
 function resetFilters() {               //Cette fonction sert à réinisialiter le style des boutons "recherche réalisateur/durée" s'ils sont actifs
     document.querySelectorAll(".recherche-boutton.active").forEach(function(b){
         b.classList.remove("active");
     });
+    document.getElementById("showTime").innerHTML = "";
+    delMoviePage();
+    appendMovie();
+    resizeBDD();
 }
 
 function search(){
@@ -82,8 +97,26 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
     });
 }
 
+function csvToArrayRequest(data) {     //Fonction prenant "data", une chaine de caractere en CSV
+    const lines = data.split('\n');                         //Crée un tableau à chaque ligne
+
+    execTime = lines[0]
+
+    lines.shift();
+    const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
+  
+    return lines.map(line => {                                      //On parcourt chaque ligne du tableau
+      const values = line.split(';');                               //On sépare chaque élément à ";"
+      return values.reduce((obj, value, index) => {
+        obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
+        return obj;             //On return notre petit tableau
+      }, {});
+    });
+
+}
+
   function appendMovie() {
-    const movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
+    let movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
 
     const gridMovie = document.querySelector(".grid");  
 
@@ -189,13 +222,32 @@ function searchFilter(){
 }
 
 function nextPage(){
-    delMoviePage();
-    if(currentPage >= nb_page-1){
-        alert("Vous ne pouvez pas allez plus loin")
+
+    let myResults = readFile("../../Serveur/ready.txt");
+
+    if(myResults == null){
+           
+        delMoviePage();
+        if(currentPage >= nb_page-1){
+            alert("Vous ne pouvez pas allez plus loin")
+        }
+        else{
+            currentPage+=1;
+        }
+
     }
+
     else{
-        currentPage+=1;
+        delMoviePage();
+        if(currentPageRequest >= nb_page_request-1){
+            console.log("c'est bien lui")
+            alert("Vous ne pouvez pas allez plus loin")
+        }
+        else{
+            currentPageRequest+=1;
+        }
     }
+    
 }
 
 function lastPage(){
@@ -205,7 +257,7 @@ function lastPage(){
 
 function previousPage(){
     delMoviePage();
-    if(currentPage <= 1){
+    if(currentPage <= 0){
         alert("Vous ne pouvez pas allez plus loin")
     }
     else{
@@ -226,7 +278,7 @@ function stylePagination(){
     
     document.getElementById("actualPage").innerHTML = currentPage;
 
-    if(currentPage==1){
+    if(currentPage==0){
         document.getElementById("actualPage").innerHTML = currentPage;
         document.getElementById("firstPage").classList.toggle("paginationActive");
         document.getElementById("lastPage").classList.remove("paginationActive");
@@ -243,7 +295,7 @@ function stylePagination(){
 }
 
 function resizeBDD(){
-    const movies = csvToArray(readFile());
+    let movies = csvToArray(readFile());
 
     let nb_movies = -1;
 
@@ -251,16 +303,16 @@ function resizeBDD(){
         nb_movies+=1;
     })
 
-    nb_page = nb_movies / 50
+    nb_page = Math.round(nb_movies / 50)
     
     document.getElementById("lastPage").innerHTML = nb_page;
 
 }
 
 function resizeRequestBDD(){
-    const movies = csvToArray(readRequest());
+    let movies = csvToArray(readRequest());
 
-    let nb_movies_request = -1;
+    nb_movies_request = -1;
 
     movies.forEach(movie => {
         nb_movies_request+=1;
@@ -268,29 +320,24 @@ function resizeRequestBDD(){
 
     nb_page_request = Math.ceil(nb_movies_request / 50);
     
-    document.getElementById("lastPage").innerHTML = nb_page;
+    document.getElementById("lastPage").innerHTML = nb_page_request;
 }
 
 function checkResult(){
-
     
-    currentPage = 0;
+    currentPageRequest = 0;
     resizeRequestBDD();
 
-
-    console.log(nb_page_request);
-
-    const movies = csvToArray(readRequest());      //On récupere notre requête sous forme de tableau
+    let movies = csvToArrayRequest(readRequest());      //On récupere notre requête sous forme de tableau
 
     const gridMovie = document.querySelector(".grid");  
     delMoviePage();
 
-    let i = 0;
-
-    //document.getElementById("showTime").innerHTML += movies[0];
-
+    document.getElementById("showTime").innerHTML = execTime;
     
-    for (i+1; i < 9; i++) {                 //Parcourt tous les éléments du tableau -1
+    let i = 50*currentPageRequest;
+
+    for (i; i < 50 + 50*currentPageRequest; i++) {                   //Parcourt tous les éléments du tableau -1
         const movie = movies[i];
 
         const movieElement = document.createElement("div");     //On crée une balise <div>
@@ -316,9 +363,6 @@ function checkResult(){
         gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
     
     }
-    
-    
-    console.log("ça marche ap")
 
 }
 

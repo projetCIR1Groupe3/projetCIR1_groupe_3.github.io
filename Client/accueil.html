@@ -66,11 +66,11 @@
                 <section class="section-recherche">
                     <form id="div-recherche">
                         <input class="searchbar" type="text" placeholder="Recherchez votre film" oninput="search()">
-                        <button id="request-Filter" onclick="searchFilter();checkResult()"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
+                        <button id="request-Filter" onclick="searchFilter()"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
                     </form>
                 </section>
 
-                <p id="showTime">Votre requête a été effectuée en : </p>
+                <span class="textShow">Votre requête a été effectuée en : <span id="showTime"></span> s</span>
 
                 <section class="section-film">
                     <div class="grid">
@@ -79,15 +79,15 @@
                 </section>
 
                 <div id="pagination">
-                    <h2 onclick="firstPage();appendMovie();stylePagination()">&lt;&lt;</h2>
-                    <h2 onclick="previousPage();appendMovie();stylePagination()">&lt;</h2>
-                    <h2 id="firstPage">1</h2>
+                    <h2 onclick="firstPage();stylePagination()">&lt;&lt;</h2>
+                    <h2 onclick="previousPage();stylePagination()">&lt;</h2>
+                    <h2 id="firstPage">0</h2>
                     <h2>...</h2>
                     <h2 id="actualPage"></h2>
                     <h2>...</h2>
                     <h2 id="lastPage">1000</h2>
-                    <h2 onclick="nextPage();appendMovie();stylePagination()">&gt;</h2>
-                    <h2 onclick="lastPage();appendMovie();stylePagination()">&gt;&gt;</h2>
+                    <h2 onclick="nextPage();stylePagination()">&gt;</h2>
+                    <h2 onclick="lastPage();stylePagination()">&gt;&gt;</h2>
                 </div>
 
             </main>

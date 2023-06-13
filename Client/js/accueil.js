@@ -348,7 +348,7 @@ function appendResult(){
 
         const movies = RequestcsvToArray(readFile());      //On récupere notre BDD sous forme de tableau
 
-        document.getElementById("showTime").innerHTML = execTime
+        document.getElementById("showTime").innerHTML = execTime;
         
         const gridMovie = document.querySelector(".grid");  
 
@@ -392,12 +392,15 @@ function RequestcsvToArray(data) {     //Fonction prenant "data", une chaine de 
     lines.shift();
     const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
 
-    return lines.map(line => {                                      //On parcourt chaque ligne du tableau
-      const values = line.split(';');                               //On sépare chaque élément à ";"
-      return values.reduce((obj, value, index) => {
-        obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
-        return obj;             //On return notre petit tableau
-      }, {});
+    return lines.map(line => {     
+        if(line != ""){
+            const values = line.split(';');                               //On sépare chaque élément à ";"
+            return values.reduce((obj, value, index) => {
+            obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
+            return obj;             //On return notre petit tableau
+        }, {});
+        }                                 //On parcourt chaque ligne du tableau
+        
 
     });
 
@@ -438,11 +441,16 @@ function showBiggestReal(){
             showBiggestReal();
         }
         else{
-            const txt = readFile().split(';')
-            let directeur = txt[0]
-            let nb_film = txt[1]
+            const lines = myResults.split('\n');
 
-            alert("Le plus gros réalisateur est " + directeur + ", il a réalisé " + nb_film + " films.")
+            execTime = lines[0];
+            document.getElementById("showTime").innerHTML = execTime;
+
+            const txt = lines[1].split(';');
+            let directeur = txt[0];
+            let nb_film = txt[1];
+
+            alert("Le plus gros réalisateur est " + directeur + ", il a réalisé " + nb_film + " films.");
         }
 
 }

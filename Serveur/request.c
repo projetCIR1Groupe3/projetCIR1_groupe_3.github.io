@@ -35,10 +35,11 @@ void ListToTxt(struct List* l){         //fonction qui écrit la liste dans un f
 
 
 void requestExe(struct Netflux* n){       //fonction qui recupère la requête et qui exécute la fonction correspondante
-    double time_spent = 0.0;
-    clock_t start = clock();        //on démarre le timer pour calculer le temps d'exécution
+    
     int stop = 0;       //variable qui permet de faire une condition d'arrêt pour la boucle while et donc pour terminer le programme
     while(stop == 0) {
+        double time_spent = 0.0;
+        clock_t start = clock();        //on démarre le timer pour calculer le temps d'exécution
         if (checkIfFileExists("../Client/request.txt")) {             //si le fichier existe alors on peut lire la requête
 
             if (checkIfFileExists("../Client/resultat.txt")) {
@@ -62,7 +63,6 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 str[strcspn(str, "\r\n")] = '\0';
                 
                 if(strchr(str, ';') != NULL){
-                    printf("pour voir 2");
                     token = strtok(str,";");
                     strcpy(filtre,token); // première itération
                     i = 0;
@@ -78,11 +78,9 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                         }
                         i++;
                     }
-                    printf("pour voir 3");
                 }
                 else{
                     strcpy(filtre,str);
-                    printf("pour voir 1");
                 }
             }
 
@@ -179,8 +177,6 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
                 FILE *ready = NULL;
                 ready = fopen("../Client/ready.txt", "w");        //on écrit un fichier "ready.txt" pour dire que le fichier est prêt à être lu
                 fclose(ready);
-            } else{
-                printf("%s\n",filtre);
             }
         }
     }

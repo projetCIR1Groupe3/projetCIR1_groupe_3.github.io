@@ -56,26 +56,41 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
             char filtre[32];
             char recherche[32];
             char str[100];
-
-
+            unsigned int actualLen;
+            bool contain;
 
             while(!feof(file)){
                 fgets(str, 100, file);
                 str[strcspn(str, "\r\n")] = '\0';
-                token = strtok(str,";");
-                strcpy(filtre,token); // première itération
-                i = 0;
-                while(token != NULL) {
-                    token = strtok(NULL, ";");
-                    switch (i) { //on "slice" avec un compteur pour mettre au bon endroit
-                        case 0:
-                            strcpy(recherche, token);
-                            break;
-                        default:
-                            token = NULL;
-                            break;
+                actualLen = strlen(str);
+                for(int j = 0;j < actualLen;j++){
+                    if(str[i] == ';'){
+                        contain = true;
+                        j = actualLen-1;
                     }
-                    i++;
+                    else{
+                        contain = false;
+                    }
+                }
+                if(contain){
+                    token = strtok(str,";");
+                    strcpy(filtre,token); // première itération
+                    i = 0;
+                    while(token != NULL) {
+                        token = strtok(NULL, ";");
+                        switch (i) { //on "slice" avec un compteur pour mettre au bon endroit
+                            case 0:
+                                strcpy(recherche, token);
+                                break;
+                            default:
+                                token = NULL;
+                                break;
+                        }
+                        i++;
+                    }
+                }
+                else{
+                    strcpy(filtre,str);
                 }
             }
 

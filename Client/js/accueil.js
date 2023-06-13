@@ -19,7 +19,7 @@ function main(){
         });
         
         
-        myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
+        /*myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
         
         if(myResults == 404){ 
@@ -32,7 +32,7 @@ function main(){
         }
         
         stylePagination();
-        
+        */
     })
 }
 

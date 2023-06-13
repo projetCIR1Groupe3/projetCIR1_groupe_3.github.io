@@ -7,12 +7,8 @@ var RequestNb_Movies;
 var RequestNb_Page;
 
 function main(){
-    document.addEventListener("DOMContentLoaded", function(event) {                         //Effectue cette fonction lorsque le DOM est chargé
-
-        //ici fonction qui requete la BDD
-
-        stylePagination();
-
+    document.addEventListener("DOMContentLoaded", function(event) {
+        
         const tableauBoutonRecherche = document.querySelectorAll(".recherche-boutton");        
         
         tableauBoutonRecherche.forEach(function(boutonRecherche){               //Pour chaque élément du tableauBoutonRecherche on fait :
@@ -21,17 +17,23 @@ function main(){
                 event.currentTarget.classList.toggle("active");                 //On active la classe CSS sur ce bouton
             });  
         });
+        
+        
+        myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
-        myResults = readFile();
-
-        if(myResults != 404){
+         
+        console.log("DOM fully loaded and parsed");
+        
+        if(myResults != 404){ 
+            allMovie('all','AllMovies');
+        }
+        
+        else{
             RequestresizeBDD();
             appendResult();
         }
-        else{
-            allMovie('all','AllMovies');
-        }
-
+        
+        stylePagination();
     })
 }
 

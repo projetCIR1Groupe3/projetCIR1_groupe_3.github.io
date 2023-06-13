@@ -77,6 +77,10 @@ void requestExe(struct Netflux* n){
                 fclose(fichier);
                 ListToTxt(l);
 
+                FILE *ready = NULL;
+                ready = fopen("ready.txt", "w");
+                fclose(ready);
+
             }
             else if(strcmp(filtre, "duree")==0){
                 int lenght = atoi(recherche);
@@ -88,6 +92,11 @@ void requestExe(struct Netflux* n){
                 fprintf(fichier, "%f\n", time_spent);
                 fclose(fichier);
                 ListToTxt(l);
+
+                FILE *ready = NULL;
+                ready = fopen("ready.txt", "w");
+                fclose(ready);
+
             }
             else if(strcmp(filtre, "DeleteAllMovies")==0){
                 deleteNetflux(n);
@@ -97,6 +106,11 @@ void requestExe(struct Netflux* n){
                 fichier = fopen("resultat.txt", "w");
                 fprintf(fichier, "%f\n", time_spent);
                 fclose(fichier);
+
+                FILE *ready = NULL;
+                ready = fopen("ready.txt", "w");
+                fclose(ready);
+
             }
             else if(strcmp(filtre, "BiggestReal")==0){
                 FILE *fichier = NULL;
@@ -109,6 +123,11 @@ void requestExe(struct Netflux* n){
                 fichier2 = fopen("resultat.txt", "w");
                 fprintf(fichier2, "%f\n", time_spent);
                 fclose(fichier2);
+
+                FILE *ready = NULL;
+                ready = fopen("ready.txt", "w");
+                fclose(ready);
+
             }
         }
     }

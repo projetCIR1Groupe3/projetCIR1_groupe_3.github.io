@@ -6,7 +6,7 @@
 #define _NETFLUX_H
 
 #include "list.h"
-#include "NodeTrie.h"
+#include "nodeTrie.h"
 
 struct Netflux {
     struct NodeTrie* trie;

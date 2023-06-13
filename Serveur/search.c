@@ -29,10 +29,13 @@ struct List* searchByDirector(struct Netflux* N, char* name){
 }
 
 struct Director* getBiggestDirector(struct Netflux* N){
+    //opération en O(1)
     return N->biggest;
 }
 
 struct List* searchByLenght(struct Netflux* N, unsigned int lenght){
+    //index dans le tableau = durée du film
+    //opération en O(1)
     return N->lengthSort[lenght];
 }
 

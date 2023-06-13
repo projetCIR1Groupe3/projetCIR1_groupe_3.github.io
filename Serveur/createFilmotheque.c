@@ -6,13 +6,14 @@
 #include "createFilmotheque.h"
 
 struct Netflux* createFilmotheque(char* fileName){
-    struct Netflux* N = createNetflux();
+    struct Netflux* N = createNetflux(); // on crée le support
     FILE* file = fopen(fileName,"r");
     char str[100];
     struct Movie* m;
     struct Director* d;
 
     while(!feof(file)){
+        //traitement d'une ligne
         fgets(str, 100, file);
         str[strcspn(str, "\r\n")] = '\0';
         m = recupMovie(str);
@@ -67,7 +68,8 @@ struct Movie* recupMovie(char* str){
         }
         i++;
     }
-    struct Movie* m = createMovie(length,name,genre, toLowerCase(directorName));
+    //on return la structure du film finie
+    struct Movie* m = createMovie(length,name,genre, toLowerCase(directorName)/*on passe le nom en min pour eviter les erreurs dans le trie*/);  
     return m;
 }
 
@@ -87,6 +89,7 @@ void compareBiggestProd(struct Netflux* N, struct Director* d){
         N->biggest = d;
     }
     else{
+        //on test la taille des listes donc le nombre de film
         if(N->biggest->movieList->size < d->movieList->size){
             N->biggest = d;
         }

@@ -17,12 +17,8 @@ struct NodeTrie* createEmptyNodeTrie();
 
 void insertDirector(struct NodeTrie* trie, struct Director* director);
 
-void deleteDirectorTrie(struct NodeTrie* trie, struct Director* director);
-
 struct Director* findDirector(struct NodeTrie* trie, char* name);
 
 void deleteNodeTrie(struct NodeTrie** trie);
-
-void displayDict(struct NodeTrie* trie, char* actualWord, int index); // main : int index = 0 / char actualWord[50]
 
 #endif

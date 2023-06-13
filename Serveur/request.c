@@ -123,21 +123,23 @@ void requestExe(struct Netflux* n){       //fonction qui recupère la requête e
 
             }
             else if(strcmp(filtre, "BiggestReal")==0){
-                char *name = getBiggestDirector(n)->name;
-                int nb = n->biggest->movieList->size;
-                clock_t end = clock();
+                char *name = getBiggestDirector(n)->name;       //on récupère le nom du réalisateur qui a réalisé le plus de films
+                int nb = n->biggest->movieList->size;                //on récupère le nombre de films qu'il a réalisé
+
+                clock_t end = clock();          //on arrête le timer car il ne faut pas compter le temps d'écriture dans le fichier
                 time_spent += (double)(end - start) / CLOCKS_PER_SEC;
+                FILE *fichier2 = NULL;
+                fichier2 = fopen("resultat.txt", "w");      //on écrit le temps d'exécution dans le fichier
+                fprintf(fichier2, "%f\n", time_spent);
+                fclose(fichier2);
+
                 FILE *fichier = NULL;
                 fichier = fopen("resultat.txt", "w");
                 fprintf(fichier, "%s;%d\n", name, nb);          //on écrit le nom du réalisateur et le nombre de films qu'il a réalisé
                 fclose(fichier);
-                FILE *fichier2 = NULL;
-                fichier2 = fopen("resultat.txt", "w");
-                fprintf(fichier2, "%f\n", time_spent);
-                fclose(fichier2);
 
                 FILE *ready = NULL;
-                ready = fopen("ready.txt", "w");
+                ready = fopen("ready.txt", "w");            //on écrit un fichier "ready.txt" pour dire que le fichier est prêt à être lu
                 fclose(ready);
 
             }

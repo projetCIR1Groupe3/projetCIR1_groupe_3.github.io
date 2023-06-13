@@ -26,6 +26,6 @@ Now... Just... ENJOY !!!!!
 Sources :
 -----------------
 
-#### https://projetcir1groupe3.github.io/projetCIR1_groupe_3.github.io/
+#### https://github.com/projetCIR1Groupe3/projetCIR1_groupe_3.github.io
 
 #### https://trello.com/invite/b/4CddTPKr/ATTI1bdf38dec6455abfd3b1c199faa82ee217C20232/projet-algo-groupe-3

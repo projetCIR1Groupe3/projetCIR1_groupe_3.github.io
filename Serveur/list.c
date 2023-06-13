@@ -44,10 +44,6 @@ void deleteFirst(struct List* l) {
 
 
 void deleteList(struct List** l){
-    if(*l == NULL){
-        return ;
-    }
-    struct Cell* iter = (*l)->head;
     while(!isListEmpty(*l)){
         deleteFirst(*l);
     }

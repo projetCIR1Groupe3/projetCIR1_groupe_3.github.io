@@ -1,17 +1,17 @@
-var currentPage = 1;
-var currentPageRequest;
-var nb_movies = -1;
+var currentPage = 0;
+var nb_movies;
 var nb_page;
-let counterAffichage = 0;
-let execTime = 0;
-let myResults;
 
-var nb_movies_request = -1;
-var nb_page_request = -1
+var RequestCurrentPage = 0;
+var RequestNb_Movies;
+var RequestNb_Page;
 
 function main(){
-
     document.addEventListener("DOMContentLoaded", function(event) {                         //Effectue cette fonction lorsque le DOM est chargé
+
+        //ici fonction qui requete la BDD
+
+        stylePagination();
 
         const tableauBoutonRecherche = document.querySelectorAll(".recherche-boutton");        
         
@@ -22,66 +22,44 @@ function main(){
             });  
         });
 
-        resizeBDD();
+        myResults = readFile();
 
-        myResults = readFile("../../Serveur/ready.txt");
-
-        if(myResults == null){
-            appendMovie();
-        }
-        else{
-            checkResult();
+        if(myResults != 404){
+            resizeBDD();
+            appendResult();
         }
 
     })
-
 }
 
 function resetFilters() {               //Cette fonction sert à réinisialiter le style des boutons "recherche réalisateur/durée" s'ils sont actifs
     document.querySelectorAll(".recherche-boutton.active").forEach(function(b){
         b.classList.remove("active");
     });
-    document.getElementById("showTime").innerHTML = "";
-    delMoviePage();
-    appendMovie();
-    resizeBDD();
 }
 
 function search(){
     const filters = []
     const filterReal = document.querySelector("#recherche_real.active");
     const filterDuree = document.querySelector("#recherche_duree.active");
-
     if(filterReal){                     //Si recherche_real est active
         filters.push("realisateur");    //On le met dans notre tableau
     }   
     if(filterDuree){                    //Si recherche_duree est active
         filters.push("duree")           //On le met dans notre tableau
     }
-
     console.log(filters)
 }
 
 function readFileByName(fileName){
-
     let xhr = new XMLHttpRequest();
-
-    try {                                                   // Remettre version du prof (enlever try, catch) lorsque le C aura été adapté
+    do {                                                   // Remettre version du prof (enlever try, catch) lorsque le C aura été adapté
         xhr.open("GET", fileName, false);
         xhr.send(null);
-    } catch (error) {
-        console.log(error)
+    } while (xhr.status === 404) {
+        
     }
-
     return xhr.responseText;
-}
-
-function readFile(){
-    return readFileByName("../../support_files_2023/BD_medium.txt");
-}
-
-function readRequest(){
-    return readFileByName("../../Serveur/resultat.txt")
 }
 
 function csvToArray(data) {     //Fonction prenant "data", une chaine de caractere en CSV
@@ -97,94 +75,67 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
     });
 }
 
-function csvToArrayRequest(data) {     //Fonction prenant "data", une chaine de caractere en CSV
-    const lines = data.split('\n');                         //Crée un tableau à chaque ligne
-
-    execTime = lines[0]
-
-    lines.shift();
-    const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
-  
-    return lines.map(line => {                                      //On parcourt chaque ligne du tableau
-      const values = line.split(';');                               //On sépare chaque élément à ";"
-      return values.reduce((obj, value, index) => {
-        obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
-        return obj;             //On return notre petit tableau
-      }, {});
-    });
-
-}
-
   function appendMovie() {
-    let movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
 
-    const gridMovie = document.querySelector(".grid");  
+    myResults = readFile();
 
-    let i = 50*currentPage;
+    if(myResults == 404){
 
-    for (i; i < 50 + 50*currentPage; i++) {                 //Parcourt tous les éléments du tableau -1
-        const movie = movies[i];
+        const movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
+        const gridMovie = document.querySelector(".grid");  
 
-        const movieElement = document.createElement("div");     //On crée une balise <div>
-        movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
-      
-        const movieTitle = document.createElement("h4");        //On crée une balise <h4>
-        movieTitle.innerText = movie.titre;                     //A laquelle on ajoute le titre tu film (grâce a la clé titre)
-      
-        const movieReal = document.createElement("p");          //On crée une balise <p>
-        movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
-      
-        const movieDuree = document.createElement("p");                                     //On crée une balise <p>
-        movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + inf10(movie.duree % 60);       //A laquelle on ajoute la durée du film (en heure)
-      
-        const movieGenre = document.createElement("p");         //On crée une balise <p>
-        movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
-      
-        movieElement.appendChild(movieTitle);                   //On ajoute titre, réalisateur, durée et genre à notre div movieElement
-        movieElement.appendChild(movieReal);
-        movieElement.appendChild(movieDuree);
-        movieElement.appendChild(movieGenre);
-    
-        gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
-    
-      }
+        let i = 50*currentPage;
+
+        for (i; i < 50 + 50*currentPage; i++) {                 //Parcourt tous les éléments du tableau -1
+            const movie = movies[i];
+            const movieElement = document.createElement("div");     //On crée une balise <div>
+            movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
+        
+            const movieTitle = document.createElement("h4");        //On crée une balise <h4>
+            movieTitle.innerText = movie.titre;                     //A laquelle on ajoute le titre tu film (grâce a la clé titre)
+        
+            const movieReal = document.createElement("p");          //On crée une balise <p>
+            movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
+        
+            const movieDuree = document.createElement("p");                                     //On crée une balise <p>
+            movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+        
+            const movieGenre = document.createElement("p");         //On crée une balise <p>
+            movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
+        
+            movieElement.appendChild(movieTitle);                   //On ajoute titre, réalisateur, durée et genre à notre div movieElement
+            movieElement.appendChild(movieReal);
+            movieElement.appendChild(movieDuree);
+            movieElement.appendChild(movieGenre);
+        
+            gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
+        
+        }
+    }
+
   }
 
-  function inf10(time) {                  // On fait une fonction qui modifie l'affichage afin d'aficher "09" au lieu de "9"
-    if (time < 10) {
-        time = '0' + time
-    }
-    return time;
-}
-
 function writeFile(id_form,func) {
-
     var element = document.createElement('a');
-
     let text1 = document.getElementById(id_form);
     let count = text1.elements.length;
     let textToSave = func;
     for(let i = 0;i<count-1;i++){
         textToSave += ";" + text1[i].value;
     }   
-
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToSave));
-    element.setAttribute('download', 'request.txt');
-
+    element.setAttribute('download', '../../Serveur/request.txt');
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
-
    text1.submit();
 }
-
 function searchFilter(){
 
-    
     let size = document.querySelector(".searchbar").value.length;
     let txt = document.querySelector(".searchbar").value
-    
+
     if(document.querySelector("#recherche_real.active")){
         for(let i=0;i<size;i++){
             if(txt[i] != "a" && txt[i] != "b" && txt[i] != "c" && txt[i] != "d" && txt[i] != "e" && txt[i] != "f" && txt[i] != "g" && txt[i] != "h" && txt[i] != "i" && txt[i] != "j" 
@@ -217,57 +168,98 @@ function searchFilter(){
     else{
         alert("Veuillez selectionner un filtre");
     }
-    
-    
+
 }
 
 function nextPage(){
 
-    let myResults = readFile("../../Serveur/ready.txt");
+        myResults = readFile();
 
-    if(myResults == null){
-           
-        delMoviePage();
-        if(currentPage >= nb_page-1){
-            alert("Vous ne pouvez pas allez plus loin")
-        }
-        else{
-            currentPage+=1;
-        }
-
-    }
-
-    else{
-        delMoviePage();
-        if(currentPageRequest >= nb_page_request-1){
-            console.log("c'est bien lui")
-            alert("Vous ne pouvez pas allez plus loin")
-        }
-        else{
-            currentPageRequest+=1;
-        }
-    }
+        if(myResults == 404){
     
+            delMoviePage();
+            if(currentPage >= nb_page-1){
+                alert("Vous ne pouvez pas allez plus loin")
+            }
+            else{
+                currentPage+=1;
+            }
+    
+        }
+    
+        else{
+
+            console.log("request current page : ",RequestCurrentPage);
+            console.log("request nb page : ",RequestNb_Page);
+            
+            delMoviePage();
+            if(RequestCurrentPage >= RequestNb_Page-1){
+                alert("Vous ne pouvez pas allez plus loin")
+            }
+            else{
+                RequestCurrentPage+=1;
+            }
+    
+        }
+
 }
 
 function lastPage(){
+
+    myResults = readFile();
+
     delMoviePage();
-    currentPage=nb_page-1;
+    if(myResults == 404){
+        currentPage=nb_page-1;
+    }
+    else{
+        RequestCurrentPage=RequestNb_Page-1;
+    }
+
 }
 
 function previousPage(){
-    delMoviePage();
-    if(currentPage <= 0){
-        alert("Vous ne pouvez pas allez plus loin")
+
+    myResults = readFile();
+
+    if(myResults == 404){
+
+        delMoviePage();
+        if(currentPage <= 0){
+            alert("Vous ne pouvez pas allez plus loin")
+        }
+        else{
+            currentPage-=1;
+        }
+
     }
+
     else{
-        currentPage-=1;
+        
+        delMoviePage();
+        if(RequestCurrentPage <= 0){
+            alert("Vous ne pouvez pas allez plus loin")
+        }
+        else{
+            RequestCurrentPage-=1;
+        }
+
     }
+
+    
 }
 
 function firstPage(){
+
+    myResults = readFile();
+
     delMoviePage();
-    currentPage=1;
+    if(myResults == 404){
+        currentPage=0;
+    }
+    else{
+        RequestCurrentPage=0;
+    }
 }
 
 function delMoviePage(){
@@ -275,95 +267,161 @@ function delMoviePage(){
 }
 
 function stylePagination(){
-    
-    document.getElementById("actualPage").innerHTML = currentPage;
 
-    if(currentPage==0){
-        document.getElementById("actualPage").innerHTML = currentPage;
-        document.getElementById("firstPage").classList.toggle("paginationActive");
-        document.getElementById("lastPage").classList.remove("paginationActive");
+    myResults = readFile();
+
+    if(myResults == 404){
+
+        document.getElementById("actualPage").innerHTML = currentPage+1;
+
+        if(currentPage==0){
+            document.getElementById("actualPage").innerHTML = currentPage+1;
+            document.getElementById("firstPage").classList.toggle("paginationActive");
+            document.getElementById("lastPage").classList.remove("paginationActive");
+        }
+        else if(currentPage==nb_page-1){
+            document.getElementById("lastPage").classList.toggle("paginationActive");
+            document.getElementById("firstPage").classList.remove("paginationActive");
+        }
+        else{
+            document.getElementById("firstPage").classList.remove("paginationActive");
+            document.getElementById("lastPage").classList.remove("paginationActive");
+        }
+
     }
-    else if(currentPage==nb_page-1){
-        document.getElementById("lastPage").classList.toggle("paginationActive");
-        document.getElementById("firstPage").classList.remove("paginationActive");
-    }
+
     else{
-        document.getElementById("firstPage").classList.remove("paginationActive");
-        document.getElementById("lastPage").classList.remove("paginationActive");
+
+        document.getElementById("actualPage").innerHTML = RequestCurrentPage+1;
+
+        if(RequestCurrentPage==0){
+            document.getElementById("actualPage").innerHTML = RequestCurrentPage+1;
+            document.getElementById("firstPage").classList.toggle("paginationActive");
+            document.getElementById("lastPage").classList.remove("paginationActive");
+        }
+        else if(RequestCurrentPage==RequestNb_Page-1){
+            document.getElementById("lastPage").classList.toggle("paginationActive");
+            document.getElementById("firstPage").classList.remove("paginationActive");
+        }
+        else{
+            document.getElementById("firstPage").classList.remove("paginationActive");
+            document.getElementById("lastPage").classList.remove("paginationActive");
+        }
+
     }
-    
+
 }
 
 function resizeBDD(){
-    let movies = csvToArray(readFile());
+    const movies = csvToArray(readFile());
 
-    let nb_movies = -1;
+    nb_movies = 0;
 
     movies.forEach(movie => {
         nb_movies+=1;
     })
 
     nb_page = Math.round(nb_movies / 50)
-    
+
     document.getElementById("lastPage").innerHTML = nb_page;
 
 }
 
-function resizeRequestBDD(){
-    let movies = csvToArray(readRequest());
 
-    nb_movies_request = -1;
 
-    movies.forEach(movie => {
-        nb_movies_request+=1;
-    })
 
-    nb_page_request = Math.ceil(nb_movies_request / 50);
-    
-    document.getElementById("lastPage").innerHTML = nb_page_request;
-}
 
-function checkResult(){
-    
-    currentPageRequest = 0;
-    resizeRequestBDD();
 
-    let movies = csvToArrayRequest(readRequest());      //On récupere notre requête sous forme de tableau
 
-    const gridMovie = document.querySelector(".grid");  
-    delMoviePage();
 
-    document.getElementById("showTime").innerHTML = execTime;
-    
-    let i = 50*currentPageRequest;
 
-    for (i; i < 50 + 50*currentPageRequest; i++) {                   //Parcourt tous les éléments du tableau -1
-        const movie = movies[i];
+function appendResult(){
+    myResults = readFile();
 
-        const movieElement = document.createElement("div");     //On crée une balise <div>
-        movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
-    
-        const movieTitle = document.createElement("h4");        //On crée une balise <h4>
-        movieTitle.innerText = movie.titre;                     //A laquelle on ajoute le titre tu film (grâce a la clé titre)
-    
-        const movieReal = document.createElement("p");          //On crée une balise <p>
-        movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
-    
-        const movieDuree = document.createElement("p");                                     //On crée une balise <p>
-        movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + inf10(movie.duree % 60);       //A laquelle on ajoute la durée du film (en heure)
-    
-        const movieGenre = document.createElement("p");         //On crée une balise <p>
-        movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
-    
-        movieElement.appendChild(movieTitle);                   //On ajoute titre, réalisateur, durée et genre à notre div movieElement
-        movieElement.appendChild(movieReal);
-        movieElement.appendChild(movieDuree);
-        movieElement.appendChild(movieGenre);
-    
-        gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
-    
+    if(myResults != 404){
+
+        const movies = RequestcsvToArray(readFile());      //On récupere notre BDD sous forme de tableau
+
+        document.getElementById("showTime").innerHTML = execTime
+        
+        const gridMovie = document.querySelector(".grid");  
+
+        let i = 50*RequestCurrentPage;
+
+        for (i; i < 50 + 50*RequestCurrentPage; i++) {                 //Parcourt tous les éléments du tableau -1
+            if(i<RequestNb_Page){
+
+                const movie = movies[i];
+                const movieElement = document.createElement("div");     //On crée une balise <div>
+                movieElement.classList.add("film");                     //A laquelle on ajoute la class "film"
+            
+                const movieTitle = document.createElement("h4");        //On crée une balise <h4>
+                movieTitle.innerText = movie.titre;                     //A laquelle on ajoute le titre tu film (grâce a la clé titre)
+            
+                const movieReal = document.createElement("p");          //On crée une balise <p>
+                movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
+            
+                const movieDuree = document.createElement("p");                                     //On crée une balise <p>
+                movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+            
+                const movieGenre = document.createElement("p");         //On crée une balise <p>
+                movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
+            
+                movieElement.appendChild(movieTitle);                   //On ajoute titre, réalisateur, durée et genre à notre div movieElement
+                movieElement.appendChild(movieReal);
+                movieElement.appendChild(movieDuree);
+                movieElement.appendChild(movieGenre);
+            
+                gridMovie.appendChild(movieElement);                    //On append notre div movieElement à notre grid
+
+            }
+        }
     }
 
 }
+
+function RequestcsvToArray(data) {     //Fonction prenant "data", une chaine de caractere en CSV
+    const lines = data.split('\n');                         //Crée un tableau à chaque ligne
+
+    execTime = lines[0]
+
+    lines.shift();
+    const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
+
+    return lines.map(line => {                                      //On parcourt chaque ligne du tableau
+      const values = line.split(';');                               //On sépare chaque élément à ";"
+      return values.reduce((obj, value, index) => {
+        obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
+        return obj;             //On return notre petit tableau
+      }, {});
+
+    });
+
+    
+
+}
+
+
+
+function readFile(){
+    readFileByName("../../Serveur/ready.txt")
+    return readFileByName("../../Serveur/resultat.txt");
+}
+
+function RequestresizeBDD(){
+    const movies = RequestcsvToArray(readFile());
+
+    RequestNb_Movies = 0;
+
+    movies.forEach(movie => {
+        RequestNb_Movies+=1;
+    })
+
+    RequestNb_Page = Math.round(RequestNb_Movies / 50)
+
+    document.getElementById("lastPage").innerHTML = RequestNb_Page;
+
+}
+
 
 main();

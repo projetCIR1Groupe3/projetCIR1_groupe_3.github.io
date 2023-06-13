@@ -24,7 +24,7 @@ void ListToTxt(struct List* l){         //fonction qui écrit la liste dans un f
         if (fichier != NULL) {
             struct Cell *iter = l->head;
             while (iter != NULL) {
-                fprintf(fichier, "%s;%s;%s;%d\n", iter->movie->directorName, iter->movie->title, iter->movie->genre, iter->movie->length);  //on écrit les infos du film dans le même format que dans la base de données
+                fprintf(fichier, "%s;%s;%d;%s\n", iter->movie->directorName, iter->movie->title, iter->movie->length, iter->movie->genre);  //on écrit les infos du film dans le même format que dans la base de données
                 iter = iter->next;
             }
             fclose(fichier);

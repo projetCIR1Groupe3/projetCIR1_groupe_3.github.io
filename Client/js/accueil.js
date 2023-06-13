@@ -18,7 +18,7 @@ function main(){
             });  
         });
         
-        
+        /*
         myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
         
@@ -32,6 +32,7 @@ function main(){
         }
         
         stylePagination();
+        */
     })
 }
 
@@ -127,7 +128,7 @@ function writeFile(id_form,func) {
         textToSave += ";" + text1[i].value;
     }   
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToSave));
-    element.setAttribute('download', '../../Serveur/request.txt');
+    element.setAttribute('download', 'request.txt');
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();

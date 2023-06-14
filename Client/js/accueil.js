@@ -56,7 +56,7 @@ function search(){
 
 function readFileByName(fileName){
     let xhr = new XMLHttpRequest();
-    do {                                                   // Remettre version du prof (enlever try, catch) lorsque le C aura été adapté
+    do {                                                  
         xhr.open("GET", fileName, false);
         xhr.send(null);
     } while (xhr.status === 404) {

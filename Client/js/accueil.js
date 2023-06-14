@@ -157,17 +157,17 @@ function searchFilter(){
             && txt[i] != "u" && txt[i] != "v" && txt[i] != "w" && txt[i] != "x" && txt[i] != "y" && txt[i] != "z" && txt[i] != "-" && txt[i] != "'" && txt[i] != "A" && txt[i] != "B" 
             && txt[i] != "C" && txt[i] != "D" && txt[i] != "E" && txt[i] != "F" && txt[i] != "G" && txt[i] != "H" && txt[i] != "I" && txt[i] != "J" && txt[i] != "K" && txt[i] != "L" 
             && txt[i] != "M" && txt[i] != "N" && txt[i] != "O" && txt[i] != "P" && txt[i] != "Q" && txt[i] != "R" && txt[i] != "S" && txt[i] != "T" && txt[i] != "U" && txt[i] != "V" 
-            && txt[i] != "W" && txt[i] != "X" && txt[i] != "Y" && txt[i] != "Z"){
-                alert("Veuillez faire une recherche cohérente avec votre filtre")
+            && txt[i] != "W" && txt[i] != "X" && txt[i] != "Y" && txt[i] != "Z"){   //Vérifie si le filtre réalisateur est respecté
+                alert("Veuillez faire une recherche cohérente avec votre filtre")   //Si non alert demandant de respecter le filtre
                 return;
             }
             else{
-                writeFile("div-recherche", "realisateur");
+                writeFile("div-recherche", "realisateur");                  //Si oui, on écrit le fichier
                 return;
             }
         }
     }
-    else if(document.querySelector("#recherche_duree.active")){
+    else if(document.querySelector("#recherche_duree.active")){     //Pareil pour durée
         for(let i=0;i<size;i++){
             if(txt[i] != "1" && txt[i] != "2" && txt[i] != "3" && txt[i] != "4" && txt[i] != "5" && txt[i] != "6" && txt[i] != "7" && txt[i] != "8" && txt[i] != "9"){
                 alert("Veuillez faire une recherche cohérente avec votre filtre")
@@ -205,17 +205,17 @@ function nextPage(){
             
             delMoviePage();
             if(RequestCurrentPage >= RequestNb_Page-1){
-                alert("Vous ne pouvez pas allez plus loin")
+                alert("Vous ne pouvez pas allez plus loin") //On met une alerte si l'utilisateur est déjà à la dernière page
             }
             else{
-                RequestCurrentPage+=1;
+                RequestCurrentPage+=1;  //Sinon, il incrémente CurrentPage
             }
     
         }
 
 }
 
-function lastPage(){
+function lastPage(){            //Envoie l'utilisateur à la dernière page
 
     myResults = readFile();
 
@@ -237,10 +237,10 @@ function previousPage(){
 
         delMoviePage();
         if(currentPage <= 0){
-            alert("Vous ne pouvez pas allez plus loin")
+            alert("Vous ne pouvez pas allez plus loin") 
         }
         else{
-            currentPage-=1;
+            currentPage-=1;             
         }
 
     }
@@ -249,10 +249,10 @@ function previousPage(){
         
         delMoviePage();
         if(RequestCurrentPage <= 0){
-            alert("Vous ne pouvez pas allez plus loin")
+            alert("Vous ne pouvez pas allez plus loin") //On met une alert si l'utilisateur est déjà à la première page
         }
         else{
-            RequestCurrentPage-=1;
+            RequestCurrentPage-=1;      //Sinon, on décremente currentPage
         }
 
     }
@@ -260,7 +260,7 @@ function previousPage(){
     
 }
 
-function firstPage(){
+function firstPage(){           //Envoie l'utilisateur à la première page
 
     myResults = readFile();
 
@@ -274,10 +274,10 @@ function firstPage(){
 }
 
 function delMoviePage(){
-    document.querySelector(".grid").innerHTML = "";
+    document.querySelector(".grid").innerHTML = "";     //Supprime tous les films
 }
 
-function stylePagination(){
+function stylePagination(){     
 
     myResults = readFile();
 
@@ -303,20 +303,20 @@ function stylePagination(){
 
     else{
 
-        document.getElementById("actualPage").innerHTML = RequestCurrentPage+1;
+        document.getElementById("actualPage").innerHTML = RequestCurrentPage+1;     //Modifie afin d'afficher la page actuelle
 
         if(RequestCurrentPage==0){
             document.getElementById("actualPage").innerHTML = RequestCurrentPage+1;
-            document.getElementById("firstPage").classList.toggle("paginationActive");
-            document.getElementById("lastPage").classList.remove("paginationActive");
+            document.getElementById("firstPage").classList.toggle("paginationActive");  //Active la classe paginationActive à l'id firstPage
+            document.getElementById("lastPage").classList.remove("paginationActive");   //Désactive la classe paginationActive à lastPage
         }
         else if(RequestCurrentPage==RequestNb_Page){
-            document.getElementById("lastPage").classList.toggle("paginationActive");
-            document.getElementById("firstPage").classList.remove("paginationActive");
+            document.getElementById("lastPage").classList.toggle("paginationActive");   //Active la classe paginationActive à l'id lastPage
+            document.getElementById("firstPage").classList.remove("paginationActive");  //Désactive la classe paginationActive à firstPage
         }
         else{
-            document.getElementById("firstPage").classList.remove("paginationActive");
-            document.getElementById("lastPage").classList.remove("paginationActive");
+            document.getElementById("firstPage").classList.remove("paginationActive");  //Désactive la classe paginationActive à firstPage
+            document.getElementById("lastPage").classList.remove("paginationActive");   //Et à firstPage
         }
 
     }
@@ -328,13 +328,13 @@ function resizeBDD(){
 
     nb_movies = 0;
 
-    movies.forEach(movie => {
+    movies.forEach(movie => {                       //Calcule le nombre de films
         nb_movies+=1;
     })
 
-    nb_page = Math.round(nb_movies / 50)
+    nb_page = Math.round(nb_movies / 50)            //Déduit le nombre de page nécessaire
 
-    document.getElementById("lastPage").innerHTML = nb_page;
+    document.getElementById("lastPage").innerHTML = nb_page;            //Modifie lastPage en fonction du nb de page nécessaire
 
 }
 
@@ -423,15 +423,15 @@ function RequestresizeBDD(){
     RequestNb_Movies = 0;
 
     movies.forEach(movie => {
-        RequestNb_Movies+=1;
+        RequestNb_Movies+=1;            //Calcule le nombre de films
     })
 
     console.log(RequestNb_Movies)
 
-    RequestNb_Page = Math.ceil(RequestNb_Movies / 50)
+    RequestNb_Page = Math.ceil(RequestNb_Movies / 50)           //Déduit le nombre de page nécessaire
     console.log(RequestNb_Page)
 
-    document.getElementById("lastPage").innerHTML = RequestNb_Page;
+    document.getElementById("lastPage").innerHTML = RequestNb_Page;         //Modifie lastPage en fonction du nb de page nécessaire
 
 }
 
@@ -443,19 +443,18 @@ function showBiggestReal(){
             showBiggestReal();
         }
         else{
-            const lines = myResults.split('\n');
+            const lines = myResults.split('\n');          //On split les deux lignes
 
-            execTime = lines[0];
-            document.getElementById("showTime").innerHTML = execTime;
+            execTime = lines[0];                          //Le temps d'exécution est égal à la première ligne
+            document.getElementById("showTime").innerHTML = execTime;     //On modifie pour afficher le temps d'exécution
 
-            const txt = lines[1].split(';');
-            let directeur = txt[0];
-            let nb_film = txt[1];
+            const txt = lines[1].split(';');        //On split la deuxième ligne au ;
+            let directeur = txt[0];                 //Le directeur est égal à l'élément 0 de la deuxième ligne
+            let nb_film = txt[1];                   //Le nb de film est égal à l'élément 1 de la deuxième ligne
 
-            alert("Le plus gros réalisateur est " + directeur + ", il a réalisé " + nb_film + " films.");
+            alert("Le plus gros réalisateur est " + directeur + ", il a réalisé " + nb_film + " films.");   //On fait une alert qui affiche nos résultats
         }
 
 }
-
 
 main();

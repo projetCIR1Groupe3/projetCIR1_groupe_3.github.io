@@ -7,12 +7,8 @@ var RequestNb_Movies;
 var RequestNb_Page;
 
 function main(){
-    document.addEventListener("DOMContentLoaded", function(event) {                         //Effectue cette fonction lorsque le DOM est chargé
-
-        //ici fonction qui requete la BDD
-
-        stylePagination();
-
+    document.addEventListener("DOMContentLoaded", function(event) {
+        
         const tableauBoutonRecherche = document.querySelectorAll(".recherche-boutton");        
         
         tableauBoutonRecherche.forEach(function(boutonRecherche){               //Pour chaque élément du tableauBoutonRecherche on fait :
@@ -21,17 +17,21 @@ function main(){
                 event.currentTarget.classList.toggle("active");                 //On active la classe CSS sur ce bouton
             });  
         });
+        
+        
+        myResults = readFile();                        //Effectue cette fonction lorsque le DOM est chargé
 
-        myResults = readFile();
-
-        if(myResults != 404){
+        
+        if(myResults == 404){ 
+            allMovie('all','AllMovies');
+        }
+        
+        else{
             RequestresizeBDD();
             appendResult();
         }
-        else{
-            allMovie('all','AllMovies');
-        }
-
+        
+        stylePagination();
     })
 }
 
@@ -66,7 +66,10 @@ function readFileByName(fileName){
 }
 
 function csvToArray(data) {     //Fonction prenant "data", une chaine de caractere en CSV
-    const lines = data.split('\n');                         //Crée un tableau à chaque ligne
+    const lines = data.split('\n');
+    if(lines[1] == "NULL"){
+        return "NULL";
+    }                         //Crée un tableau à chaque ligne
     const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
   
     return lines.map(line => {                                      //On parcourt chaque ligne du tableau
@@ -78,17 +81,20 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
     });
 }
 
-  function appendMovie() {
+function appendMovie() {
 
     myResults = readFile();
 
-    if(myResults == 404){
+    if(myResults != 404){
 
         const movies = csvToArray(readFile());      //On récupere notre BDD sous forme de tableau
         const gridMovie = document.querySelector(".grid");  
 
         let i = 50*currentPage;
-
+        if(movies == "NULL"){
+            gridMovie.innerHTML = "<h3>Votre recherche n'a mené à rien</h3>";
+            return ;
+        }
         for (i; i < 50 + 50*currentPage; i++) {                 //Parcourt tous les éléments du tableau -1
             const movie = movies[i];
             const movieElement = document.createElement("div");     //On crée une balise <div>
@@ -115,8 +121,7 @@ function csvToArray(data) {     //Fonction prenant "data", une chaine de caracte
         
         }
     }
-
-  }
+}
 
 function writeFile(id_form,func) {
     var element = document.createElement('a');
@@ -127,7 +132,7 @@ function writeFile(id_form,func) {
         textToSave += ";" + text1[i].value;
     }   
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textToSave));
-    element.setAttribute('download', '../../Serveur/request.txt');
+    element.setAttribute('download', 'request.txt');
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
@@ -333,14 +338,6 @@ function resizeBDD(){
 
 }
 
-
-
-
-
-
-
-
-
 function appendResult(){
     myResults = readFile();
 
@@ -348,12 +345,12 @@ function appendResult(){
 
         const movies = RequestcsvToArray(readFile());      //On récupere notre BDD sous forme de tableau
 
-        document.getElementById("showTime").innerHTML = execTime
+        document.getElementById("showTime").innerHTML = execTime;
         
         const gridMovie = document.querySelector(".grid");  
 
         let i = 50*RequestCurrentPage;
-
+        
         for (i; i < 50 + 50*RequestCurrentPage; i++) {                 //Parcourt tous les éléments du tableau -1
 
             const movie = movies[i];
@@ -366,8 +363,13 @@ function appendResult(){
             const movieReal = document.createElement("p");          //On crée une balise <p>
             movieReal.innerText = movie.realisateur;                //A laquelle on ajoute le nom du réalisateur
         
-            const movieDuree = document.createElement("p");                                     //On crée une balise <p>
-            movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+            const movieDuree = document.createElement("p");         //On crée une balise <p>
+            if(movie.duree % 60 <10){
+                movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + "0" + movie.duree % 60; 
+            }                                    
+            else{
+                movieDuree.innerText = Math.floor(movie.duree / 60) + "h" + movie.duree % 60;       //A laquelle on ajoute la durée du film (en heure)
+            }
         
             const movieGenre = document.createElement("p");         //On crée une balise <p>
             movieGenre.innerText = movie.genre;                     //A laquelle on ajoute le genre du film
@@ -392,12 +394,15 @@ function RequestcsvToArray(data) {     //Fonction prenant "data", une chaine de 
     lines.shift();
     const keys = ['realisateur', 'titre', 'duree', 'genre'];        //Avec les clés réalisateur,titre,durée et genre
 
-    return lines.map(line => {                                      //On parcourt chaque ligne du tableau
-      const values = line.split(';');                               //On sépare chaque élément à ";"
-      return values.reduce((obj, value, index) => {
-        obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
-        return obj;             //On return notre petit tableau
-      }, {});
+    return lines.map(line => {     
+        if(line != ""){
+            const values = line.split(';');                               //On sépare chaque élément à ";"
+            return values.reduce((obj, value, index) => {
+            obj[keys[index]] = value;           //Chaque petit tableau de notre gros tableau est modifié (on ajoute nom du film etc)
+            return obj;             //On return notre petit tableau
+        }, {});
+        }                                 //On parcourt chaque ligne du tableau
+        
 
     });
 
@@ -408,8 +413,8 @@ function RequestcsvToArray(data) {     //Fonction prenant "data", une chaine de 
 
 
 function readFile(){
-    readFileByName("../../Serveur/ready.txt")
-    return readFileByName("../../Serveur/resultat.txt");
+    readFileByName("ready.txt")
+    return readFileByName("resultat.txt");
 }
 
 function RequestresizeBDD(){
@@ -427,6 +432,28 @@ function RequestresizeBDD(){
     console.log(RequestNb_Page)
 
     document.getElementById("lastPage").innerHTML = RequestNb_Page;         //Modifie lastPage en fonction du nb de page nécessaire
+
+}
+
+function showBiggestReal(){
+
+    myResults = readFile();                        
+
+        if(myResults == 404){ 
+            showBiggestReal();
+        }
+        else{
+            const lines = myResults.split('\n');          //On split les deux lignes
+
+            execTime = lines[0];                          //Le temps d'exécution est égal à la première ligne
+            document.getElementById("showTime").innerHTML = execTime;     //On modifie pour afficher le temps d'exécution
+
+            const txt = lines[1].split(';');        //On split la deuxième ligne au ;
+            let directeur = txt[0];                 //Le directeur est égal à l'élément 0 de la deuxième ligne
+            let nb_film = txt[1];                   //Le nb de film est égal à l'élément 1 de la deuxième ligne
+
+            alert("Le plus gros réalisateur est " + directeur + ", il a réalisé " + nb_film + " films.");   //On fait une alert qui affiche nos résultats
+        }
 
 }
 

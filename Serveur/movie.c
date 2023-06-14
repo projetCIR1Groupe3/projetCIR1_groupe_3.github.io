@@ -34,22 +34,6 @@ struct Movie* createMovie(unsigned int length, char* title, char* genre, char* d
 
 }
 
-char* getTitle(struct Movie* m){        //on recupere le titre du film
-    return m->title;
-}
-
-char* getGenre(struct Movie* m){        //on recupere le genre du film
-    return m->genre;
-}
-
-unsigned int getLength(struct Movie* m){        //on recupere la duree du film
-    return m->length;
-}
-
-char* getDirectorName(struct Movie* m){     //on recupere le nom du realisateur du film
-    return m->directorName;
-}
-
 void deleteMovie(struct Movie** m){         //on supprime le film
     //on supprime les éléments un par un
     free((*m)->directorName);
